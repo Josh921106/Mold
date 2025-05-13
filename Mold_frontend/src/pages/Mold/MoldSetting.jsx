@@ -128,7 +128,7 @@ export default function MoldSetting() {
             <div style={{ position: 'fixed', top: '20px', right: '20px', zIndex: 999 }}>
                     <button
                       className=""
-                      style={{ backgroundColor: "transparent", color: "red", fontSize: "22px" }}
+                      style={{ backgroundColor: "transparent", color: "red", fontSize: "22px", border: "none" }}
                       onClick={() => {
                         localStorage.removeItem("moldRows");
                         clearToken();
