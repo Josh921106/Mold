@@ -1,0 +1,132 @@
+/* 原有背景 */
+.not-found-bg {
+  background: radial-gradient(circle at center, #001f3f, #000000);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 404 霓虹燈 */
+.neon-404 {
+  font-size: 120px;
+  font-weight: bold;
+  color: #00f0ff;
+  text-shadow: 0 0 5px #00f0ff, 0 0 10px #00f0ff, 0 0 20px #00f0ff,
+    0 0 40px #00f0ff;
+  animation: flicker 1.5s infinite;
+}
+
+@keyframes flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* 🚀 火箭 */
+.rocket {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  font-size: 2.5rem;
+  cursor: grab;
+  z-index: 2;
+}
+
+/* 🌕 月亮漂浮 */
+.moon {
+  position: absolute;
+  top: 15%;
+  right: 5%;
+  font-size: 3rem;
+  animation: floatMoon 6s ease-in-out infinite alternate;
+  opacity: 0.7;
+  z-index: 1;
+}
+
+@keyframes floatMoon {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-20px);
+  }
+}
+
+/* ☄️ 隕石滑動 */
+.meteor {
+  position: absolute;
+  top: 20%;
+  left: 80%;
+  font-size: 2.5rem;
+  cursor: grab;
+  z-index: 2;
+}
+
+@keyframes meteorFly {
+  0% {
+    left: -10%;
+    top: 40%;
+  }
+  50% {
+    left: 50%;
+    top: 90%;
+  }
+  100% {
+    left: 110%;
+    top: 40%;
+  }
+}
+
+/* ✨ 星空動畫 (多層) */
+.stars,
+.stars2,
+.stars3 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-repeat: repeat;
+  background-size: contain;
+  z-index: 0;
+  animation: moveStars 200s linear infinite;
+}
+
+.stars {
+  background-image: radial-gradient(
+    1px 1px at 20px 30px,
+    #ffffff 50%,
+    transparent 100%
+  );
+  opacity: 0.4;
+}
+
+.stars2 {
+  background-image: radial-gradient(
+    1px 1px at 70px 80px,
+    #ffffff 50%,
+    transparent 100%
+  );
+  opacity: 0.3;
+  animation-duration: 300s;
+}
+
+.stars3 {
+  background-image: radial-gradient(
+    1px 1px at 100px 50px,
+    #ffffff 50%,
+    transparent 100%
+  );
+  opacity: 0.2;
+  animation-duration: 500s;
+}
+
+@keyframes moveStars {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-1000px);
+  }
+}

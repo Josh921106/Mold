@@ -1,0 +1,336 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #f8f8f8;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  background-color: #f8f8f8;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  position: relative;
+  top: 0;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 30px;
+  bottom: 0;
+}
+
+.logo {
+  width: 220px;
+  height: 220px;
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: auto;
+  height: 250px;
+}
+
+.title {
+  font-size: 46px;
+  font-weight: 700;
+  font-family: 'M PLUS 1 Code', sans-serif;
+  color: #4B5D72;
+  padding-top: 0;
+  margin-top: 0;
+  width: 319px;
+}
+
+.subtitle {
+  display: flex;
+  margin-top: 8px;
+  font-size: 16px;
+  color: #8d8d8d;
+  border-bottom: 2px solid #cccccc;
+  padding-bottom: 8px;
+  padding-top: 25px;
+}
+
+.model {
+  font-family: 'Inter', sans-serif;
+  font-size: 28px;
+  padding-right: 50px;
+  color: #8f8c7e;
+  transition: color 0.3s, font-size 0.3s;
+}
+
+.model.selected {
+  color: #354252;
+  font-size: 31px;
+}
+
+.grid-wrapper {
+  padding-top: 0.8%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0px;
+  width: 75%;
+  border-left: 3px solid #979292;
+  border-top: 3px solid #979292;
+  background-color: #f8f8f8;
+}
+
+.grid-item {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background-color: #f8f8f8;
+  border-right: 3px solid #979292;
+  border-bottom: 3px solid #979292;
+  display: flex;
+  flex-direction: column;
+  padding: 1px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.subcell-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.grid-subcell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  font-size: 13px;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-left: 1px solid #fff;
+  border-right: 1px solid #fff;
+}
+
+.cell-1 {
+  flex: 1;
+}
+
+.cell-2 {
+  flex: 1 0 50%;
+}
+
+.cell-3 {
+  flex: 1 0 33.33%;
+}
+
+.grid-subcell {
+  position: relative;
+  flex-grow: 1;
+  border-right: 1px solid #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  font-size: clamp(10px, 1vw, 14px);
+  font-weight: bold;
+  color: white;
+}
+
+.grid-subcell.using { background-color: #9aaec9; }
+.grid-subcell.stored { background-color: #c5e5d2; }
+.grid-subcell.abnormal { background-color: #ddb3b3; }
+.grid-subcell.empty { background-color: #ffffff; color: #ccc; }
+
+.grid-subcell .actions.horizontal {
+  flex-direction: row;
+}
+
+.grid-subcell .actions.vertical {
+  flex-direction: column;
+}
+
+.grid-subcell:last-child {
+  border-right: none;
+}
+
+.grid-subcell .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #B9B9B9;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 1; /* 降低 z-index，確保按鈕在上方 */
+  pointer-events: none; /* 允許點擊事件穿透 */
+}
+
+.grid-subcell:hover .overlay {
+  opacity: 0.5; /* 半透明效果 */
+}
+
+.grid-subcell .part-text {
+  z-index: 2;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.grid-subcell:hover .part-text {
+  opacity: 0; /* 滑入時文字消失 */
+}
+
+.grid-subcell .actions {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3; /* 高於 overlay 和 part-text */
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  opacity: 0; /* 使用 opacity 替代 visibility */
+  transition: opacity 0.2s ease-in-out;
+}
+
+.grid-subcell:hover .actions {
+  opacity: 1; /* 懸停時顯示 */
+}
+
+.grid-subcell .part-text {
+  z-index: 2;
+  text-align: center;
+  white-space: nowrap;
+  padding: 0 4px;
+}
+
+.action-btn {
+  background-color: transparent;
+  color: rgb(248, 248, 248);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0.5rem; /* 增加點擊區域 */
+  z-index: 4; /* 確保按鈕在最上層 */
+  pointer-events: auto; /* 確保可點擊 */
+}
+
+.part-text {
+  color: #ffffff;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.legend-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6%;
+  margin-top: 0.2%;
+  margin-left: 30px;
+  padding-top: 0.6%;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  font-size: 28px;
+  font-family: 'Inter', sans-serif;
+  color: #000;
+}
+
+.legend-box {
+  width: 38px;
+  height: 38px;
+  border: 2px solid black;
+  margin-right: 15px;
+  box-sizing: border-box;
+}
+
+.legend-box.empty {
+  background-color: #f8f8f8;
+}
+
+.legend-box.using {
+  background-color: #9aaec9;
+}
+
+.legend-box.stored {
+  background-color: #c5e5d2;
+}
+
+.legend-box.abnormal {
+  background-color: #ddb3b3;
+}
+
+/* Setting */
+.table-bordered,
+.table-bordered > :not(caption) > * {
+  border-color: white !important;
+}
+
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid white !important;
+}
+
+.table-scroll {
+  max-height: 680px;
+  max-width: 95%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #aaa #f8f9fa;
+}
+
+.table > tbody > tr:nth-child(odd) > td {
+  background-color: #ffffff !important;
+}
+
+.table > tbody > tr:nth-child(even) > td {
+  background-color: #f8f9fa !important;
+}
+
+.custom-number {
+  border: none !important;
+  background-color: transparent !important;
+  outline: none !important;
+  text-align: center;
+  width: 40%;
+  font-size: 1rem;
+  color: #212529;
+  padding: 0;
+}
+
+.search-box {
+  border: 1px solid #000000;
+  border-radius: 6px;
+  height: 50px;
+}
+
+.data-table {
+  height: 0px;
+}

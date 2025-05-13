@@ -1,0 +1,49 @@
+version: "3.9"
+
+services:
+  moldtext_db:
+    image: mariadb:10.11
+    container_name: Mold_MariaDB
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: iiot
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - moldtext_db_data:/var/lib/mysql
+
+  mold_backend:
+    build:
+      context: ./Mold_backend
+    volumes:
+      - ./Mold_backend:/app
+    ports:
+      - "3000:3000"
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=development
+      - DB_HOST=moldtext_db
+      - DB_PORT=3306
+      - DB_USER=user
+      - DB_PASSWORD=pass
+      - DB_NAME=iiot
+    depends_on:
+      - moldtext_db
+           
+  mold_frontend:
+    build:
+      context: ./Mold_frontend
+    command: npm run dev -- --host
+    volumes:
+      - ./Mold_frontend:/app
+      - /app/node_modules
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=development
+
+volumes:
+  moldtext_db_data:

@@ -1,0 +1,50 @@
+.settings-panel {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 320px;
+  height: 100vh;
+  background-color: #e5e8f0;
+  box-shadow: -2px 0 12px rgba(0, 0, 0, 0.15);
+  z-index: 1050;
+  transition: right 0.3s ease;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-panel.show {
+  right: 0;
+}
+
+.settings-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.close-icon {
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+}
+
+.settings-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding-left: 0.5rem;
+}
+
+.settings-link {
+  text-decoration: none;
+  color: #1d4ed8;
+  font-weight: bold;
+  font-size: 1.05rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.settings-link:hover {
+  color: #0e3ca1;
+  text-decoration: underline;
+}

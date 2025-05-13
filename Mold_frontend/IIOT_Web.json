@@ -1,0 +1,1094 @@
+{
+  "uuid": "3612d1ca-5411-4122-affe-4041424adc36",
+  "lastMigration": 33,
+  "name": "IIOT Web",
+  "endpointPrefix": "api",
+  "latency": 0,
+  "port": 3000,
+  "hostname": "0.0.0.0",
+  "folders": [
+    {
+      "uuid": "07fbfbd4-81dc-4996-89b4-bef945da996e",
+      "name": "製程儀錶板",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "038e5250-206e-496d-9d42-aec0fb361dd0"
+        },
+        {
+          "type": "route",
+          "uuid": "59ff093b-6a35-46e3-ab3f-ad3bb702cfcb"
+        },
+        {
+          "type": "route",
+          "uuid": "44cc4f3d-ebb2-436c-bc21-52138a803285"
+        }
+      ]
+    },
+    {
+      "uuid": "5da9545d-abd6-4b52-8957-5897507c471f",
+      "name": "工廠資訊面板",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "deed052f-5ec9-4c8a-8498-984458249b02"
+        },
+        {
+          "type": "route",
+          "uuid": "b018e56c-f480-4235-838d-9bf1f838ce63"
+        },
+        {
+          "type": "route",
+          "uuid": "1429e265-b665-44a9-ba72-93821eee74ca"
+        },
+        {
+          "type": "route",
+          "uuid": "5d902a60-451a-4627-ad74-9955f8201c5f"
+        },
+        {
+          "type": "route",
+          "uuid": "71c21498-48e2-4356-94da-3de269a4ce4f"
+        },
+        {
+          "type": "route",
+          "uuid": "5ed67884-b6b7-474c-8b12-cd4f5880b5df"
+        },
+        {
+          "type": "route",
+          "uuid": "bb3ae975-d19f-4a91-ba79-34f9b3f2be26"
+        }
+      ]
+    },
+    {
+      "uuid": "c78c44d5-4a3e-4535-8c43-d1c8b2f21290",
+      "name": "設備基本資訊",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "15f2a0de-7137-4b99-8e56-a7c81eadecf3"
+        },
+        {
+          "type": "route",
+          "uuid": "29bebda0-eeab-4e7e-86f2-b8912361cd5f"
+        },
+        {
+          "type": "route",
+          "uuid": "d842de29-731d-49cd-8dbb-8d567e996324"
+        },
+        {
+          "type": "route",
+          "uuid": "a3b58ab7-c444-40b9-8d0a-da3b5ac2569b"
+        }
+      ]
+    },
+    {
+      "uuid": "d3d9845c-d577-4252-a9c9-f1dc2e596d96",
+      "name": "設備閥值",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "798bee5c-2577-481c-814b-452acb73b44c"
+        },
+        {
+          "type": "route",
+          "uuid": "f35ba8bf-7c73-4cf8-9d78-f591e4b5f630"
+        }
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "uuid": "deed052f-5ec9-4c8a-8498-984458249b02",
+      "type": "http",
+      "documentation": "機台狀態總和",
+      "method": "get",
+      "endpoint": "FactoryMonitor/GetTotalStatus",
+      "responses": [
+        {
+          "uuid": "e73068bb-8a78-44bc-9ecb-4b9d2ad8b2b4",
+          "body": "{\n  \"status\": 0,\n  \"data\": {\n    \"run\": {{faker 'number.int' min=0 max=40}},\n    \"idle\": {{faker 'number.int' min=0 max=40}},\n    \"off\": {{faker 'number.int' min=0 max=40}},\n    \"alarm\": {{faker 'number.int' min=0 max=40}}\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "b018e56c-f480-4235-838d-9bf1f838ce63",
+      "type": "http",
+      "documentation": "場域圖可視化機台狀態",
+      "method": "get",
+      "endpoint": "FactoryGrid/GetStatus",
+      "responses": [
+        {
+          "uuid": "08df4c7a-a09c-49e1-99ef-0e0ff074c4ea",
+          "body": "{\r\n  \"status\": 0,\r\n  \"data\": [\r\n    { \"id\": \"C1\", \"name\": \"C1\", \"status\": \"RUN\" },\r\n    { \"id\": \"C2\", \"name\": \"C2\", \"status\": \"RUN\" },\r\n    { \"id\": \"C3\", \"name\": \"C3\", \"status\": \"RUN\" },\r\n    { \"id\": \"C4\", \"name\": \"C4\", \"status\": \"RUN\" },\r\n    { \"id\": \"C6\", \"name\": \"C6\", \"status\": \"IDLE\" },\r\n    { \"id\": \"A7\", \"name\": \"A7\", \"status\": \"IDLE\" },\r\n    { \"id\": \"C7\", \"name\": \"C7\", \"status\": \"IDLE\" },\r\n    { \"id\": \"A1\", \"name\": \"A1\", \"status\": \"OFF\" },\r\n    { \"id\": \"A8\", \"name\": \"A8\", \"status\": \"OFF\" },\r\n    { \"id\": \"C8\", \"name\": \"C8\", \"status\": \"ALARM\" }\r\n  ]\r\n}\r\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "ab18a5d1-49af-4757-8f1f-945b6034dc49",
+          "body": "{\r\n  \"status\": 0,\r\n  \"data\": [\r\n    { \"id\": \"81\", \"name\": \"81\", \"status\": \"RUN\" },\r\n    { \"id\": \"77\", \"name\": \"77\", \"status\": \"RUN\" },\r\n    { \"id\": \"75\", \"name\": \"75\", \"status\": \"RUN\" },\r\n    { \"id\": \"C4\", \"name\": \"C4\", \"status\": \"RUN\" },\r\n    { \"id\": \"C6\", \"name\": \"C6\", \"status\": \"IDLE\" },\r\n    { \"id\": \"A7\", \"name\": \"A7\", \"status\": \"IDLE\" },\r\n    { \"id\": \"C7\", \"name\": \"C7\", \"status\": \"IDLE\" },\r\n    { \"id\": \"A1\", \"name\": \"A1\", \"status\": \"OFF\" },\r\n    { \"id\": \"A8\", \"name\": \"A8\", \"status\": \"OFF\" },\r\n    { \"id\": \"C8\", \"name\": \"C8\", \"status\": \"ALARM\" }\r\n  ]\r\n}\r\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": " (copy)",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "700d6065-f7ec-410f-8f00-49f33c35a691",
+          "body": "{\r\n  \"status\": 0,\r\n  \"data\": [\r\n    { \"id\": \"76\", \"name\": \"76\", \"status\": \"RUN\" },\r\n    { \"id\": \"77\", \"name\": \"77\", \"status\": \"RUN\" },\r\n    { \"id\": \"75\", \"name\": \"75\", \"status\": \"RUN\" },\r\n    { \"id\": \"C4\", \"name\": \"C4\", \"status\": \"RUN\" },\r\n    { \"id\": \"G6\", \"name\": \"G6\", \"status\": \"IDLE\" },\r\n    { \"id\": \"A7\", \"name\": \"A7\", \"status\": \"IDLE\" },\r\n    { \"id\": \"C7\", \"name\": \"C7\", \"status\": \"IDLE\" },\r\n    { \"id\": \"A1\", \"name\": \"A1\", \"status\": \"OFF\" },\r\n    { \"id\": \"A8\", \"name\": \"A8\", \"status\": \"OFF\" },\r\n    { \"id\": \"C8\", \"name\": \"C8\", \"status\": \"ALARM\" }\r\n  ]\r\n}\r\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": " (copy) (copy)",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "463eeb38-9f66-48b8-9bad-7053e39f92f7",
+          "body": "{\r\n  \"status\": 0,\r\n  \"data\": [\r\n    { \"id\": \"76\", \"name\": \"76\", \"status\": \"RUN\" },\r\n    { \"id\": \"82\", \"name\": \"82\", \"status\": \"RUN\" },\r\n    { \"id\": \"78\", \"name\": \"78\", \"status\": \"RUN\" },\r\n    { \"id\": \"C4\", \"name\": \"C4\", \"status\": \"RUN\" },\r\n    { \"id\": \"G6\", \"name\": \"G6\", \"status\": \"IDLE\" },\r\n    { \"id\": \"A7\", \"name\": \"A7\", \"status\": \"IDLE\" },\r\n    { \"id\": \"F7\", \"name\": \"F7\", \"status\": \"IDLE\" },\r\n    { \"id\": \"F1\", \"name\": \"F1\", \"status\": \"OFF\" },\r\n    { \"id\": \"A8\", \"name\": \"A8\", \"status\": \"OFF\" },\r\n    { \"id\": \"C8\", \"name\": \"C8\", \"status\": \"ALARM\" }\r\n  ]\r\n}\r\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": " (copy) (copy) (copy)",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "96a88766-ba32-4d57-9651-63a5c919ef5d",
+          "body": "{\r\n  \"status\": 0,\r\n  \"data\": [\r\n    { \"id\": \"76\", \"name\": \"76\", \"status\": \"RUN\" },\r\n    { \"id\": \"82\", \"name\": \"82\", \"status\": \"RUN\" },\r\n    { \"id\": \"78\", \"name\": \"78\", \"status\": \"RUN\" },\r\n    { \"id\": \"C4\", \"name\": \"C4\", \"status\": \"RUN\" },\r\n    { \"id\": \"G6\", \"name\": \"G6\", \"status\": \"IDLE\" },\r\n    { \"id\": \"A7\", \"name\": \"A7\", \"status\": \"IDLE\" },\r\n    { \"id\": \"F7\", \"name\": \"F7\", \"status\": \"IDLE\" },\r\n    { \"id\": \"B1\", \"name\": \"B1\", \"status\": \"OFF\" },\r\n    { \"id\": \"A8\", \"name\": \"A8\", \"status\": \"OFF\" },\r\n    { \"id\": \"C8\", \"name\": \"C8\", \"status\": \"ALARM\" }\r\n  ]\r\n}\r\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": " (copy) (copy) (copy) (copy)",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": "RANDOM",
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "1429e265-b665-44a9-ba72-93821eee74ca",
+      "type": "http",
+      "documentation": "場域圖可視化單一機台狀態",
+      "method": "get",
+      "endpoint": "FactoryGrid/:id/GetMachineData",
+      "responses": [
+        {
+          "uuid": "4e696420-3d62-463e-886f-66e607216105",
+          "body": "{\n  \"status\": 0,\n  \"data\": {\n    \"processing_time\": \"\",\n    \"idle_time\": \"1時52分24秒\",\n    \"pieces\": {{faker 'number.int' min=0 max=400}},\n    \"top_left_temp\": {{faker 'number.float' min=0 max=1000}},\n    \"bottom_left_temp\": {{faker 'number.float' min=0 max=1000}},\n    \"top_right_temp\": {{faker 'number.float' min=0 max=1000}},\n    \"bottom_right_temp\": {{faker 'number.float' min=0 max=1000}},\n    \"mold_temp\": {{faker 'number.float' min=0 max=1000}},\n    \"vacuum\": {{faker 'number.float' min=0 max=1}}\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "zmyb",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "5d902a60-451a-4627-ad74-9955f8201c5f",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "FactoryList/:area/GetMachinesData",
+      "responses": [
+        {
+          "uuid": "cf1b94c0-19d1-4ce4-b6a5-f13927fcbad9",
+          "body": "{\n  \"status\": 0,\n  \"data\": [\n    {\n      \"id\": \"C1\",\n      \"status\": \"RUN\",\n      \"processing_time\": 120,\n      \"idle_time\": 30,\n      \"pieces\": 100,\n      \"top_left_temp\": 60,\n      \"bottom_left_temp\": 55,\n      \"top_right_temp\": 65,\n      \"bottom_right_temp\": 70,\n      \"mold_temp\": 75,\n      \"vacuum\": 0.5\n    },\n    {\n      \"id\": \"C2\",\n      \"status\": \"IDLE\",\n      \"processing_time\": 0,\n      \"idle_time\": 150,\n      \"pieces\": 0,\n      \"top_left_temp\": 50,\n      \"bottom_left_temp\": 45,\n      \"top_right_temp\": 55,\n      \"bottom_right_temp\": 60,\n      \"mold_temp\": 65,\n      \"vacuum\": 0.3\n    },\n    {\n      \"id\": \"C3\",\n      \"status\": \"OFF\",\n      \"processing_time\": 0,\n      \"idle_time\": 0,\n      \"pieces\": 0,\n      \"top_left_temp\": 0,\n      \"bottom_left_temp\": 0,\n      \"top_right_temp\": 0,\n      \"bottom_right_temp\": 0,\n      \"mold_temp\": 0,\n      \"vacuum\": 0\n    },\n    {\n      \"id\": \"C4\",\n      \"status\": \"ALARM\",\n      \"processing_time\": 50,\n      \"idle_time\": 20,\n      \"pieces\": 10,\n      \"top_left_temp\": 70,\n      \"bottom_left_temp\": 65,\n      \"top_right_temp\": 75,\n      \"bottom_right_temp\": 80,\n      \"mold_temp\": 85,\n      \"vacuum\": 0.6\n    },\n    {\n      \"id\": \"C5\",\n      \"status\": \"RUN\",\n      \"processing_time\": 200,\n      \"idle_time\": 10,\n      \"pieces\": 200,\n      \"top_left_temp\": 65,\n      \"bottom_left_temp\": 60,\n      \"top_right_temp\": 70,\n      \"bottom_right_temp\": 75,\n      \"mold_temp\": 80,\n      \"vacuum\": 0.7\n    },\n    {\n      \"id\": \"C6\",\n      \"status\": \"IDLE\",\n      \"processing_time\": 0,\n      \"idle_time\": 100,\n      \"pieces\": 0,\n      \"top_left_temp\": 55,\n      \"bottom_left_temp\": 50,\n      \"top_right_temp\": 60,\n      \"bottom_right_temp\": 65,\n      \"mold_temp\": 70,\n      \"vacuum\": 0.4\n    },\n    {\n      \"id\": \"C7\",\n      \"status\": \"OFF\",\n      \"processing_time\": 0,\n      \"idle_time\": 0,\n      \"pieces\": 0,\n      \"top_left_temp\": 0,\n      \"bottom_left_temp\": 0,\n      \"top_right_temp\": 0,\n      \"bottom_right_temp\": 0,\n      \"mold_temp\": 0,\n      \"vacuum\": 0\n    },\n    {\n      \"id\": \"C8\",\n      \"status\": \"ALARM\",\n      \"processing_time\": 30,\n      \"idle_time\": 5,\n      \"pieces\": 5,\n      \"top_left_temp\": 75,\n      \"bottom_left_temp\": 70,\n      \"top_right_temp\": 80,\n      \"bottom_right_temp\": 85,\n      \"mold_temp\": 90,\n      \"vacuum\": 1.2\n    },\n    {\n      \"id\": \"75\",\n      \"status\": \"RUN\",\n      \"processing_time\": 150,\n      \"idle_time\": 20,\n      \"pieces\": 150,\n      \"top_left_temp\": 80,\n      \"bottom_left_temp\": 75,\n      \"top_right_temp\": 85,\n      \"bottom_right_temp\": 90,\n      \"mold_temp\": 95,\n      \"vacuum\": 1\n    },\n    {\n      \"id\": \"76\",\n      \"status\": \"IDLE\",\n      \"processing_time\": 0,\n      \"idle_time\": 80,\n      \"pieces\": 0,\n      \"top_left_temp\": 45,\n      \"bottom_left_temp\": 40,\n      \"top_right_temp\": 50,\n      \"bottom_right_temp\": 55,\n      \"mold_temp\": 60,\n      \"vacuum\": 0.2\n    },\n    {\n      \"id\": \"77\",\n      \"status\": \"OFF\",\n      \"processing_time\": 0,\n      \"idle_time\": 0,\n      \"pieces\": 0,\n      \"top_left_temp\": 0,\n      \"bottom_left_temp\": 0,\n      \"top_right_temp\": 0,\n      \"bottom_right_temp\": 0,\n      \"mold_temp\": 0,\n      \"vacuum\": 0\n    },\n    {\n      \"id\": \"78\",\n      \"status\": \"ALARM\",\n      \"processing_time\": 40,\n      \"idle_time\": 15,\n      \"pieces\": 8,\n      \"top_left_temp\": 72,\n      \"bottom_left_temp\": 67,\n      \"top_right_temp\": 77,\n      \"bottom_right_temp\": 82,\n      \"mold_temp\": 87,\n      \"vacuum\": 1.1\n    },\n    {\n      \"id\": \"79\",\n      \"status\": \"RUN\",\n      \"processing_time\": 180,\n      \"idle_time\": 25,\n      \"pieces\": 180,\n      \"top_left_temp\": 85,\n      \"bottom_left_temp\": 80,\n      \"top_right_temp\": 90,\n      \"bottom_right_temp\": 95,\n      \"mold_temp\": 100,\n      \"vacuum\": 1.5\n    },\n    {\n      \"id\": \"80\",\n      \"status\": \"IDLE\",\n      \"processing_time\": 0,\n      \"idle_time\": 90,\n      \"pieces\": 0,\n      \"top_left_temp\": 50,\n      \"bottom_left_temp\": 45,\n      \"top_right_temp\": 55,\n      \"bottom_right_temp\": 60,\n      \"mold_temp\": 65,\n      \"vacuum\": 0.3\n    },\n    {\n      \"id\": \"81\",\n      \"status\": \"OFF\",\n      \"processing_time\": 0,\n      \"idle_time\": 0,\n      \"pieces\": 0,\n      \"top_left_temp\": 0,\n      \"bottom_left_temp\": 0,\n      \"top_right_temp\": 0,\n      \"bottom_right_temp\": 0,\n      \"mold_temp\": 0,\n      \"vacuum\": 0\n    },\n    {\n      \"id\": \"82\",\n      \"status\": \"ALARM\",\n      \"processing_time\": 60,\n      \"idle_time\": 10,\n      \"pieces\": 12,\n      \"top_left_temp\": 78\n    },\n    {\n      \"id\": \"B1\",\n      \"status\": \"RUN\",\n      \"processing_time\": 160,\n      \"idle_time\": 15,\n      \"pieces\": 160,\n      \"top_left_temp\": 88\n    },\n    {\n      \"id\": \"B2\",\n      \"status\": \"IDLE\",\n      \"processing_time\": 0,\n      \"idle_time\": 70,\n      \"pieces\": 0,\n      \"top_left_temp\": 48\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "71c21498-48e2-4356-94da-3de269a4ce4f",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "FactoryList/B/GetMachinesData",
+      "responses": [
+        {
+          "uuid": "4396e1d6-8f4f-4117-b4f9-9d3ba6db2c29",
+          "body": "{\n  \"status\": 0,\n  \"data\": {\n    \"processing_time\": \"\",\n    \"idle_time\": \"1時52分24秒\",\n    \"pieces\": \"\",\n    \"top_left_temp\": \"\",\n    \"bottom_left_temp\": \"\",\n    \"top_right_temp\": \"\",\n    \"bottom_right_temp\": \"\",\n    \"mold_temp\": \"\",\n    \"vacuum\": \"\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "wd20",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "5ed67884-b6b7-474c-8b12-cd4f5880b5df",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "FactoryList/C/GetMachinesData",
+      "responses": [
+        {
+          "uuid": "0c7a01d1-dad4-4e1d-8b21-b8197de89686",
+          "body": "{\n  \"status\": 0,\n  \"data\": {\n    \"processing_time\": \"\",\n    \"idle_time\": \"1時52分24秒\",\n    \"pieces\": \"\",\n    \"top_left_temp\": \"\",\n    \"bottom_left_temp\": \"\",\n    \"top_right_temp\": \"\",\n    \"bottom_right_temp\": \"\",\n    \"mold_temp\": \"\",\n    \"vacuum\": \"\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "vbio",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "bb3ae975-d19f-4a91-ba79-34f9b3f2be26",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "FactoryList/CARM/GetMachinesData",
+      "responses": [
+        {
+          "uuid": "e5a07415-6771-4e4f-b11b-a526167ba2cc",
+          "body": "{\n  \"status\": 0,\n  \"data\": {\n    \"processing_time\": \"\",\n    \"idle_time\": \"1時52分24秒\",\n    \"pieces\": \"\",\n    \"top_left_temp\": \"\",\n    \"bottom_left_temp\": \"\",\n    \"top_right_temp\": \"\",\n    \"bottom_right_temp\": \"\",\n    \"mold_temp\": \"\",\n    \"vacuum\": \"\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "613e",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "15f2a0de-7137-4b99-8e56-a7c81eadecf3",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "EquipmentInfo",
+      "responses": [
+        {
+          "uuid": "7d1c1f84-68fe-48ff-96c6-38f77c5813ea",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "hox5",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "29bebda0-eeab-4e7e-86f2-b8912361cd5f",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "EquipmentInfo",
+      "responses": [
+        {
+          "uuid": "beaac47a-547f-417b-8c7b-ede1aeb3f591",
+          "body": "{\n  \"status\": 0\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "hox5",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "d842de29-731d-49cd-8dbb-8d567e996324",
+      "type": "http",
+      "documentation": "",
+      "method": "patch",
+      "endpoint": "EquipmentInfo/:id",
+      "responses": [
+        {
+          "uuid": "bc9a0aad-9f86-4ab1-9476-5c0b7643df5e",
+          "body": "{\n  \"status\": 0\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "hox5",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "a3b58ab7-c444-40b9-8d0a-da3b5ac2569b",
+      "type": "http",
+      "documentation": "",
+      "method": "delete",
+      "endpoint": "EquipmentInfo",
+      "responses": [
+        {
+          "uuid": "ce3a5e36-48f2-487a-8c62-a28dab7f3009",
+          "body": "{\n  \"status\": 0\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "hox5",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "7ffc86ab-e14a-4a52-9dcf-55b46c425b44",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "MachineList",
+      "responses": [
+        {
+          "uuid": "d4d2b9b2-97a7-4089-b358-2dfe3366290e",
+          "body": "{\n  \"status\": 0,\n  \"data\": [\"A1\", \"A2\", \"A3\", \"A4\", \"A5\", \"A6\", \"A7\", \"A8\", \"B1\", \"B2\", \"C1\", \"C2\", \"C3\", \"C4\", \"C5\", \"C6\", \"C7\", \"C8\", \"F1\", \"F2\", \"F3\", \"F4\", \"F5\", \"F6\", \"F7\", \"F8\", \"G1\", \"G2\", \"G3\", \"G4\", \"G5\", \"G6\", \"75\", \"76\", \"77\", \"78\", \"79\", \"80\", \"81\", \"82\"]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "798bee5c-2577-481c-814b-452acb73b44c",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "Threshold/:id",
+      "responses": [
+        {
+          "uuid": "d271ad90-bb5d-42f8-a697-84093c4c5332",
+          "body": "{\n  \"status\": 0,\n  \"data\": {\n    \"name\": \"XXXC\",\n    \"thresholds\": [\n      {\n        \"name\": \"加工時間\",\n        \"normalMin\": 10,\n        \"normalMax\": 30,\n        \"abnormalDelta\": 5,\n        \"notify\": true\n      },\n      {\n        \"name\": \"開置時間\",\n        \"normalMin\": 5,\n        \"normalMax\": 15,\n        \"abnormalDelta\": 3,\n        \"notify\": false\n      },\n      {\n        \"name\": \"上模左溫度\",\n        \"normalMin\": 80,\n        \"normalMax\": 100,\n        \"abnormalDelta\": 5,\n        \"notify\": true\n      },\n      {\n        \"name\": \"下模左溫度\",\n        \"normalMin\": 80,\n        \"normalMax\": 100,\n        \"abnormalDelta\": 5,\n        \"notify\": true\n      },\n      {\n        \"name\": \"上模右溫度\",\n        \"normalMin\": 80,\n        \"normalMax\": 100,\n        \"abnormalDelta\": 5,\n        \"notify\": true\n      },\n      {\n        \"name\": \"下模右溫度\",\n        \"normalMin\": 80,\n        \"normalMax\": 100,\n        \"abnormalDelta\": 5,\n        \"notify\": true\n      },\n      {\n        \"name\": \"模具溫度\",\n        \"normalMin\": 80,\n        \"normalMax\": 100,\n        \"abnormalDelta\": 5,\n        \"notify\": true\n      },\n      {\n        \"name\": \"真空壓力\",\n        \"normalMin\": 80,\n        \"normalMax\": 100,\n        \"abnormalDelta\": 5,\n        \"notify\": true\n      }\n    ]\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "f35ba8bf-7c73-4cf8-9d78-f591e4b5f630",
+      "type": "http",
+      "documentation": "",
+      "method": "patch",
+      "endpoint": "Threshold/:id",
+      "responses": [
+        {
+          "uuid": "f95a6ffc-8e0e-4bda-b88d-fec4ae69a32b",
+          "body": "{\n  \"status\": 0\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "038e5250-206e-496d-9d42-aec0fb361dd0",
+      "type": "http",
+      "documentation": "製程儀表板，工廠總稼動率面板",
+      "method": "get",
+      "endpoint": "ProcessOverview",
+      "responses": [
+        {
+          "uuid": "7c837e08-0a3a-4699-89fc-cf2be29698e2",
+          "body": "{\n  \"status\": 0,\n  \"data\": [\n    {\n      \"id\": 1,\n      \"name\": \"Process A\",\n      \"status\": {\n        \"run\": {{faker 'number.int' min=0 max=100}},\n        \"idle\": {{faker 'number.int' min=0 max=100}},\n        \"alarm\": {{faker 'number.int' min=0 max=100}},\n        \"off\": {{faker 'number.int' min=0 max=100}}\n      }\n    },\n    {\n      \"id\": 2,\n      \"name\": \"Process B\",\n      \"status\": {\n        \"run\": {{faker 'number.int' min=0 max=100}},\n        \"idle\": {{faker 'number.int' min=0 max=100}},\n        \"alarm\": {{faker 'number.int' min=0 max=100}},\n        \"off\": {{faker 'number.int' min=0 max=100}}\n      }\n    },\n    {\n      \"id\": 3,\n      \"name\": \"Process C\",\n      \"status\": {\n        \"run\": {{faker 'number.int' min=0 max=100}},\n        \"idle\": {{faker 'number.int' min=0 max=100}},\n        \"alarm\": {{faker 'number.int' min=0 max=100}},\n        \"off\": {{faker 'number.int' min=0 max=100}}\n      }\n    },\n    {\n      \"id\": 4,\n      \"name\": \"Process D\",\n      \"status\": {\n        \"run\": {{faker 'number.int' min=0 max=100}},\n        \"idle\": {{faker 'number.int' min=0 max=100}},\n        \"alarm\": {{faker 'number.int' min=0 max=100}},\n        \"off\": {{faker 'number.int' min=0 max=100}}\n      }\n    },\n    {\n      \"id\": 5,\n      \"name\": \"Process E\",\n      \"status\": {\n        \"run\": {{faker 'number.int' min=0 max=100}},\n        \"idle\": {{faker 'number.int' min=0 max=100}},\n        \"alarm\": {{faker 'number.int' min=0 max=100}},\n        \"off\": {{faker 'number.int' min=0 max=100}}\n      }\n    }\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "59ff093b-6a35-46e3-ab3f-ad3bb702cfcb",
+      "type": "http",
+      "documentation": "製程儀表板，單一製程總稼動率面板",
+      "method": "get",
+      "endpoint": "ProcessDetail/:id",
+      "responses": [
+        {
+          "uuid": "43adb094-630f-4588-b91a-3946e19e5a8e",
+          "body": "{\n  \"status\": 0,\n  \"data\": {\n    \"name\": \"Process 1\",\n    \"status\": {\n      \"run\": 40,\n      \"idle\": 20,\n      \"alarm\": 10,\n      \"off\": 10\n    },\n    \"processLineData\": {\n      \"today\": [\n        60,\n        70,\n        80,\n        90,\n        100,\n        11,\n        12,\n        50,\n        40,\n        60,\n        77,\n        84,\n        55,\n        66,\n        77,\n        88,\n        99,\n        100,\n        90,\n        80,\n        70,\n        60,\n        44,\n        0\n      ],\n      \"yesterday\": [\n        70,\n        80,\n        90,\n        100,\n        10,\n        12,\n        13,\n        60,\n        50,\n        70,\n        87,\n        94,\n        65,\n        76,\n        87,\n        98,\n        19,\n        11,\n        100,\n        90,\n        80,\n        70,\n        54,\n        40\n      ],\n      \"datetime\": [\n        \"15\",\n        \"16\",\n        \"17\",\n        \"18\",\n        \"19\",\n        \"20\",\n        \"21\",\n        \"22\",\n        \"23\",\n        \"00\",\n        \"01\",\n        \"02\",\n        \"03\",\n        \"04\",\n        \"05\",\n        \"06\",\n        \"07\",\n        \"08\",\n        \"09\",\n        \"10\",\n        \"11\",\n        \"12\",\n        \"13\",\n        \"14\"\n      ]\n    },\n    \"machinesData\": [\n      {\n        \"id\": 1,\n        \"name\": \"Machine 1\",\n        \"nowStatus\": \"RUN\",\n        \"status\": {\n          \"run\": 40,\n          \"idle\": 20,\n          \"alarm\": 10,\n          \"off\": 10\n        }\n      },\n      {\n        \"id\": 2,\n        \"name\": \"Machine 2\",\n        \"nowStatus\": \"RUN\",\n        \"status\": {\n          \"run\": 40,\n          \"idle\": 20,\n          \"alarm\": 10,\n          \"off\": 10\n        }\n      },\n      {\n        \"id\": 3,\n        \"name\": \"Machine 3\",\n        \"nowStatus\": \"IDLE\",\n        \"status\": {\n          \"run\": 40,\n          \"idle\": 20,\n          \"alarm\": 10,\n          \"off\": 10\n        }\n      },\n      {\n        \"id\": 4,\n        \"name\": \"Machine 4\",\n        \"nowStatus\": \"OFF\",\n        \"status\": {\n          \"run\": 40,\n          \"idle\": 20,\n          \"alarm\": 10,\n          \"off\": 10\n        }\n      },\n      {\n        \"id\": 5,\n        \"name\": \"Machine 5\",\n        \"nowStatus\": \"ALARM\",\n        \"status\": {\n          \"run\": 40,\n          \"idle\": 20,\n          \"alarm\": 10,\n          \"off\": 10\n        }\n      },\n      {\n        \"id\": 6,\n        \"name\": \"Machine 6\",\n        \"nowStatus\": \"IDLE\",\n        \"status\": {\n          \"run\": 40,\n          \"idle\": 20,\n          \"alarm\": 10,\n          \"off\": 10\n        }\n      },\n      {\n        \"id\": 7,\n        \"name\": \"Machine 7\",\n        \"nowStatus\": \"RUN\",\n        \"status\": {\n          \"run\": 40,\n          \"idle\": 20,\n          \"alarm\": 10,\n          \"off\": 10\n        }\n      },\n      {\n        \"id\": 8,\n        \"name\": \"Machine 8\",\n        \"nowStatus\": \"RUN\",\n        \"status\": {\n          \"run\": 40,\n          \"idle\": 20,\n          \"alarm\": 10,\n          \"off\": 10\n        }\n      },\n      {\n        \"id\": 9,\n        \"name\": \"Machine 9\",\n        \"nowStatus\": \"RUN\",\n        \"status\": {\n          \"run\": 40,\n          \"idle\": 20,\n          \"alarm\": 10,\n          \"off\": 10\n        }\n      },\n      {\n        \"id\": 10,\n        \"name\": \"Machine 10\",\n        \"nowStatus\": \"RUN\",\n        \"status\": {\n          \"run\": 40,\n          \"idle\": 20,\n          \"alarm\": 10,\n          \"off\": 10\n        }\n      },\n      {\n        \"id\": 11,\n        \"name\": \"Machine 11\",\n        \"nowStatus\": \"RUN\",\n        \"status\": {\n          \"run\": 40,\n          \"idle\": 20,\n          \"alarm\": 10,\n          \"off\": 10\n        }\n      },\n      {\n        \"id\": 12,\n        \"name\": \"Machine 12\",\n        \"nowStatus\": \"RUN\",\n        \"status\": {\n          \"run\": 40,\n          \"idle\": 20,\n          \"alarm\": 10,\n          \"off\": 10\n        }\n      },\n      {\n        \"id\": 13,\n        \"name\": \"Machine 13\",\n        \"nowStatus\": \"RUN\",\n        \"status\": {\n          \"run\": 40,\n          \"idle\": 20,\n          \"alarm\": 10,\n          \"off\": 10\n        }\n      },\n      {\n        \"id\": 14,\n        \"name\": \"Machine 14\",\n        \"nowStatus\": \"RUN\",\n        \"status\": {\n          \"run\": 40,\n          \"idle\": 20,\n          \"alarm\": 10,\n          \"off\": 10\n        }\n      },\n      {\n        \"id\": 15,\n        \"name\": \"Machine 15\",\n        \"nowStatus\": \"RUN\",\n        \"status\": {\n          \"run\": 40,\n          \"idle\": 20,\n          \"alarm\": 10,\n          \"off\": 10\n        }\n      },\n      {\n        \"id\": 16,\n        \"name\": \"Machine 16\",\n        \"nowStatus\": \"RUN\",\n        \"status\": {\n          \"run\": 40,\n          \"idle\": 20,\n          \"alarm\": 10,\n          \"off\": 10\n        }\n      },\n      {\n        \"id\": 17,\n        \"name\": \"Machine 17\",\n        \"nowStatus\": \"RUN\",\n        \"status\": {\n          \"run\": 40,\n          \"idle\": 20,\n          \"alarm\": 10,\n          \"off\": 10\n        }\n      },\n      {\n        \"id\": 18,\n        \"name\": \"Machine 18\",\n        \"nowStatus\": \"RUN\",\n        \"status\": {\n          \"run\": 40,\n          \"idle\": 20,\n          \"alarm\": 10,\n          \"off\": 10\n        }\n      },\n      {\n        \"id\": 19,\n        \"name\": \"Machine 19\",\n        \"nowStatus\": \"RUN\",\n        \"status\": {\n          \"run\": 40,\n          \"idle\": 20,\n          \"alarm\": 10,\n          \"off\": 10\n        }\n      },\n      {\n        \"id\": 20,\n        \"name\": \"Machine 20\",\n        \"nowStatus\": \"RUN\",\n        \"status\": {\n          \"run\": 40,\n          \"idle\": 20,\n          \"alarm\": 10,\n          \"off\": 10\n        }\n      }\n    ]\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "44cc4f3d-ebb2-436c-bc21-52138a803285",
+      "type": "http",
+      "documentation": "製程儀錶板，單一機台稼動率面板",
+      "method": "get",
+      "endpoint": "MachineDetail/:id",
+      "responses": [
+        {
+          "uuid": "533103bc-0059-4e83-bead-cce5b4920eaa",
+          "body": "{\n  \"status\": 0,\n  \"data\": {\n    \"name\": \"Machine A\",\n    \"status\": { \"run\": 50, \"idle\": 20, \"alarm\": 10, \"off\": 10 },\n    \"info\": {\n      \"programCount\": 12,\n      \"operator\": \"John Doe\",\n      \"product\": \"Product A\",\n      \"stdQty\": 1000,\n      \"processCode\": \"P12345\",\n      \"totalCount\": 12,\n      \"mode\": \"Normal\",\n      \"outputQty\": \"12x1=12\"\n    },\n    \"lineData\": {\n      \"today\": [60, 70, 80, 90, 100, 11, 12, 50, 40, 60, 77, 84, 55, 66, 77, 88, 99, 100, 90, 80, 70, 60, 44, 0],\n      \"yesterday\": [70, 80, 90, 100, 11, 12, 50, 40, 60, 77, 84, 55, 66, 77, 88, 99, 100, 90, 80, 70, 60, 44, 30, 50],\n      \"datetime\": [\"15\", \"16\", \"17\", \"18\", \"19\", \"20\", \"21\", \"22\", \"23\", \"00\", \"01\", \"02\", \"03\", \"04\", \"05\", \"06\", \"07\", \"08\", \"09\", \"10\", \"11\", \"12\", \"13\", \"14\"]\n    },\n    \"barData\": {\n      \"2025/04/04\": 80, \"2025/04/05\": 90, \"2025/04/06\": 100, \"2025/04/07\": 11, \"2025/04/08\": 12, \"2025/04/09\": 50, \"2025/04/10\": 40\n    },\n    \"timeBar\": [\n      { \"start\": \"2025/04/10 08:00\", \"end\": \"2025/04/10 10:00\", \"status\": \"RUN\" },\n      { \"start\": \"2025/04/10 10:00\", \"end\": \"2025/04/10 10:30\", \"status\": \"IDLE\" },\n      { \"start\": \"2025/04/10 10:30\", \"end\": \"2025/04/10 11:00\", \"status\": \"ALARM\" },\n      { \"start\": \"2025/04/10 11:00\", \"end\": \"2025/04/10 12:00\", \"status\": \"RUN\" },\n      { \"start\": \"2025/04/10 12:00\", \"end\": \"2025/04/10 13:00\", \"status\": \"OFF\" },\n      { \"start\": \"2025/04/10 13:00\", \"end\": \"2025/04/10 14:00\", \"status\": \"RUN\" },\n      { \"start\": \"2025/04/10 14:00\", \"end\": \"2025/04/10 14:15\", \"status\": \"ALARM\" },\n      { \"start\": \"2025/04/10 14:15\", \"end\": \"2025/04/10 15:20\", \"status\": \"OFF\" },\n      { \"start\": \"2025/04/10 15:20\", \"end\": \"2025/04/10 17:00\", \"status\": \"RUN\" },\n      { \"start\": \"2025/04/10 17:00\", \"end\": \"2025/04/10 17:10\", \"status\": \"IDLE\" },\n      { \"start\": \"2025/04/10 17:10\", \"end\": \"2025/04/10 18:00\", \"status\": \"RUN\" },\n      { \"start\": \"2025/04/10 18:00\", \"end\": \"2025/04/10 20:00\", \"status\": \"OFF\" }\n    ]\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "30fbaee9-f06a-42a8-bd43-2aefd3520a3a",
+      "type": "http",
+      "documentation": "登入",
+      "method": "post",
+      "endpoint": "login",
+      "responses": [
+        {
+          "uuid": "eab01570-9497-4d02-9d39-1940492d242e",
+          "body": "{\n  \"status\": 0,\n  \"token\": \"sdsddhjdkfhlehLKdklfhej6f156fe1f1561e1fd1f56e\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "0032940f-91ee-4b8d-b986-5c42c12962eb",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "MachineHealth/:id",
+      "responses": [
+        {
+          "uuid": "932ab231-668b-40d3-afff-de597c826dfe",
+          "body": "{\n  \"status\": 0,\n  \"data\": {\n    \"datetime\": [],\n    \"data\": []\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "bae74e2f-a154-46ff-af08-7f52054b8c61",
+      "type": "http",
+      "documentation": "抓取公司資訊",
+      "method": "get",
+      "endpoint": "CompanyInfo",
+      "responses": [
+        {
+          "uuid": "f577a59b-c0d4-4a8b-be29-63c5e9cb1e74",
+          "body": "{\n  \"status\": 0,\n  \"data\": {\n    \"ID\": 1,\n    \"COMPANY_NAME\": \"富麒工業\",\n    \"LOGO\": \"/img/logo.jpg\",\n    \"LOGIN\": \"/img/bg01.jpg\",\t\n    \"ENTRANCE\":\t\"/img/bg01.jpg\",\n    \"PROCESS\": 4,\n    \"LOCALPATH\": \"C:\\Data\\\",\n    \"FOLDERLIST\": \"state_history,prog_history,availability_Day,availability_hour,Current,KWH,CO2,PLC_buf\"\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "8af92129-9f9b-4fe7-83d5-d25bf9c88346",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "MachinesData",
+      "responses": [
+        {
+          "uuid": "cbcaf018-2cba-48e1-9782-8248dd7a97fc",
+          "body": "{\n  \"status\": 0,\n  \"data\": {\n    \"datetime\": [],\n    \"data\": []\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "ptfs",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "f8e7cb38-2121-4250-bfad-1cf00494cef5",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "MachineInfo/:id",
+      "responses": [
+        {
+          "uuid": "455ba614-0c18-44eb-934d-28696104dc91",
+          "body": "{\n  \"status\": 0,\n  \"data\": {\n    \"id\": 1,\n    \"name\": \"C1\",\n    \"supervisor\": \"3=??\",\n    \"phone\": \"0900111222\",\n    \"lineId\": \"@ex1\",\n    \"program_num\": \"O9999\",\n    \"program_name\": \"啥?\",\n    \"gain\": 1,\n    \"standard\": 1000\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "ptfs",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "f726c694-b7bf-40d2-8b61-ba059b483fa4",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "Machine",
+      "responses": [
+        {
+          "uuid": "c39eed3c-f261-4327-b650-b25b658ba7cb",
+          "body": "{\n  \"status\": 0\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "bcdf0810-657c-4472-bb5d-f2b328b60641",
+      "type": "http",
+      "documentation": "",
+      "method": "delete",
+      "endpoint": "Machine",
+      "responses": [
+        {
+          "uuid": "11b001a4-164f-477d-95d8-ae3b1db7077b",
+          "body": "{\n  \"status\": 0\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "d22be16f-1c53-4ece-9287-8c47c9f4c220",
+      "type": "http",
+      "documentation": "",
+      "method": "patch",
+      "endpoint": "Machine/:id",
+      "responses": [
+        {
+          "uuid": "0e995fef-7b4e-4024-a436-bd7cb3c7fc72",
+          "body": "{\n  \"status\": 0\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "hox5",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "bae74e2f-a154-46ff-af08-7f52054b8c61"
+    },
+    {
+      "type": "route",
+      "uuid": "30fbaee9-f06a-42a8-bd43-2aefd3520a3a"
+    },
+    {
+      "type": "folder",
+      "uuid": "07fbfbd4-81dc-4996-89b4-bef945da996e"
+    },
+    {
+      "type": "folder",
+      "uuid": "5da9545d-abd6-4b52-8957-5897507c471f"
+    },
+    {
+      "type": "folder",
+      "uuid": "c78c44d5-4a3e-4535-8c43-d1c8b2f21290"
+    },
+    {
+      "type": "folder",
+      "uuid": "d3d9845c-d577-4252-a9c9-f1dc2e596d96"
+    },
+    {
+      "type": "route",
+      "uuid": "7ffc86ab-e14a-4a52-9dcf-55b46c425b44"
+    },
+    {
+      "type": "route",
+      "uuid": "0032940f-91ee-4b8d-b986-5c42c12962eb"
+    },
+    {
+      "type": "route",
+      "uuid": "8af92129-9f9b-4fe7-83d5-d25bf9c88346"
+    },
+    {
+      "type": "route",
+      "uuid": "f8e7cb38-2121-4250-bfad-1cf00494cef5"
+    },
+    {
+      "type": "route",
+      "uuid": "f726c694-b7bf-40d2-8b61-ba059b483fa4"
+    },
+    {
+      "type": "route",
+      "uuid": "d22be16f-1c53-4ece-9287-8c47c9f4c220"
+    },
+    {
+      "type": "route",
+      "uuid": "bcdf0810-657c-4472-bb5d-f2b328b60641"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [
+    {
+      "uuid": "892f0db2-833e-4693-ab8a-79b7c69cd29d",
+      "id": "zmyb",
+      "name": "MachineData",
+      "documentation": "",
+      "value": "[\n  { \"id\": \"C1\", \"status\": \"RUN\", \"processing_time\": 120, \"idle_time\": 30, \"pieces\": 100, \"top_left_temp\": 60, \"bottom_left_temp\": 55, \"top_right_temp\": 65, \"bottom_right_temp\": 70, \"mold_temp\": 75, \"vacuum\": 0.5 },\n  { \"id\": \"C2\", \"status\": \"IDLE\", \"processing_time\": 0, \"idle_time\": 150, \"pieces\": 0, \"top_left_temp\": 50, \"bottom_left_temp\": 45, \"top_right_temp\": 55, \"bottom_right_temp\": 60, \"mold_temp\": 65, \"vacuum\": 0.3 },\n  { \"id\": \"C3\", \"status\": \"OFF\", \"processing_time\": 0, \"idle_time\": 0, \"pieces\": 0, \"top_left_temp\": 0, \"bottom_left_temp\": 0, \"top_right_temp\": 0, \"bottom_right_temp\": 0, \"mold_temp\": 0, \"vacuum\": 0 },\n  { \"id\": \"C4\", \"status\": \"ALARM\", \"processing_time\": 50, \"idle_time\": 20, \"pieces\": 10, \"top_left_temp\": 70, \"bottom_left_temp\": 65, \"top_right_temp\": 75, \"bottom_right_temp\": 80, \"mold_temp\": 85, \"vacuum\": 0.6 },\n  { \"id\": \"C5\", \"status\": \"RUN\", \"processing_time\": 200, \"idle_time\": 10, \"pieces\": 200, \"top_left_temp\": 65, \"bottom_left_temp\": 60, \"top_right_temp\": 70, \"bottom_right_temp\": 75, \"mold_temp\": 80, \"vacuum\": 0.7 },\n  { \"id\": \"C6\", \"status\": \"IDLE\", \"processing_time\": 0, \"idle_time\": 100, \"pieces\": 0, \"top_left_temp\": 55, \"bottom_left_temp\": 50, \"top_right_temp\": 60, \"bottom_right_temp\": 65, \"mold_temp\": 70, \"vacuum\": 0.4 },\n  { \"id\": \"C7\", \"status\": \"OFF\", \"processing_time\": 0, \"idle_time\": 0, \"pieces\": 0, \"top_left_temp\": 0, \"bottom_left_temp\": 0, \"top_right_temp\": 0, \"bottom_right_temp\": 0, \"mold_temp\": 0, \"vacuum\": 0 },\n  { \"id\": \"C8\", \"status\": \"ALARM\", \"processing_time\": 30, \"idle_time\": 5, \"pieces\": 5, \"top_left_temp\": 75, \"bottom_left_temp\": 70, \"top_right_temp\": 80, \"bottom_right_temp\": 85, \"mold_temp\": 90, \"vacuum\": 1.2 },\n  { \"id\": \"75\", \"status\": \"RUN\", \"processing_time\": 150, \"idle_time\": 20, \"pieces\": 150, \"top_left_temp\": 80, \"bottom_left_temp\": 75, \"top_right_temp\": 85, \"bottom_right_temp\": 90, \"mold_temp\": 95, \"vacuum\": 1.0 },\n  { \"id\": \"76\", \"status\": \"IDLE\", \"processing_time\": 0, \"idle_time\": 80, \"pieces\": 0, \"top_left_temp\": 45, \"bottom_left_temp\": 40, \"top_right_temp\": 50, \"bottom_right_temp\": 55, \"mold_temp\": 60, \"vacuum\": 0.2 },\n  { \"id\": \"77\", \"status\": \"OFF\", \"processing_time\": 0, \"idle_time\": 0, \"pieces\": 0, \"top_left_temp\": 0, \"bottom_left_temp\": 0, \"top_right_temp\": 0, \"bottom_right_temp\": 0, \"mold_temp\": 0, \"vacuum\": 0 },\n  { \"id\": \"78\", \"status\": \"ALARM\", \"processing_time\": 40, \"idle_time\": 15, \"pieces\": 8, \"top_left_temp\": 72, \"bottom_left_temp\": 67, \"top_right_temp\": 77, \"bottom_right_temp\": 82, \"mold_temp\": 87, \"vacuum\": 1.1 },\n  { \"id\": \"79\", \"status\": \"RUN\", \"processing_time\": 180, \"idle_time\": 25, \"pieces\": 180, \"top_left_temp\": 85, \"bottom_left_temp\": 80, \"top_right_temp\": 90, \"bottom_right_temp\": 95, \"mold_temp\": 100, \"vacuum\": 1.5 },\n  { \"id\": \"80\", \"status\": \"IDLE\", \"processing_time\": 0, \"idle_time\": 90, \"pieces\": 0, \"top_left_temp\": 50, \"bottom_left_temp\": 45, \"top_right_temp\": 55, \"bottom_right_temp\": 60, \"mold_temp\": 65, \"vacuum\": 0.3 },\n  { \"id\": \"81\", \"status\": \"OFF\", \"processing_time\": 0, \"idle_time\": 0, \"pieces\": 0, \"top_left_temp\": 0, \"bottom_left_temp\": 0, \"top_right_temp\": 0, \"bottom_right_temp\": 0, \"mold_temp\": 0, \"vacuum\": 0 },\n  { \"id\": \"82\", \"status\": \"ALARM\", \"processing_time\": 60, \"idle_time\": 10, \"pieces\": 12, \"top_left_temp\": 78 },\n  { \"id\": \"B1\", \"status\": \"RUN\", \"processing_time\": 160, \"idle_time\": 15, \"pieces\":160, \"top_left_temp\": 88 },\n  { \"id\": \"B2\", \"status\": \"IDLE\", \"processing_time\": 0, \"idle_time\": 70, \"pieces\": 0, \"top_left_temp\": 48 },\n  { \"id\": \"G1\", \"status\": \"RUN\", \"processing_time\": 120, \"idle_time\": 30, \"pieces\": 100, \"top_left_temp\": 60, \"bottom_left_temp\": 55, \"top_right_temp\": 65, \"bottom_right_temp\": 70, \"mold_temp\": 75, \"vacuum\": 0.5 },\n  { \"id\": \"G2\", \"status\": \"IDLE\", \"processing_time\": 0, \"idle_time\": 150, \"pieces\": 0, \"top_left_temp\": 50, \"bottom_left_temp\": 45, \"top_right_temp\": 55, \"bottom_right_temp\": 60, \"mold_temp\": 65, \"vacuum\": 0.3 },\n  { \"id\": \"G3\", \"status\": \"OFF\", \"processing_time\": 0, \"idle_time\": 0, \"pieces\": 0, \"top_left_temp\": 0, \"bottom_left_temp\": 0, \"top_right_temp\": 0, \"bottom_right_temp\": 0, \"mold_temp\": 0, \"vacuum\": 0 },\n  { \"id\": \"G4\", \"status\": \"ALARM\", \"processing_time\": 50, \"idle_time\": 20, \"pieces\": 10, \"top_left_temp\": 70, \"bottom_left_temp\": 65, \"top_right_temp\": 75, \"bottom_right_temp\": 80, \"mold_temp\": 85, \"vacuum\": 0.6 },\n  { \"id\": \"G5\", \"status\": \"RUN\", \"processing_time\": 200, \"idle_time\": 10, \"pieces\": 200, \"top_left_temp\": 65, \"bottom_left_temp\": 60, \"top_right_temp\": 70, \"bottom_right_temp\": 75, \"mold_temp\": 80, \"vacuum\": 0.7 },\n  { \"id\": \"G6\", \"status\": \"IDLE\", \"processing_time\": 0, \"idle_time\": 100, \"pieces\": 0, \"top_left_temp\": 55, \"bottom_left_temp\": 50, \"top_right_temp\": 60, \"bottom_right_temp\": 65, \"mold_temp\": 70, \"vacuum\": 0.4 },\n  { \"id\": \"F1\", \"status\": \"RUN\", \"processing_time\": 120, \"idle_time\": 30, \"pieces\": 100, \"top_left_temp\": 60, \"bottom_left_temp\": 55, \"top_right_temp\": 65, \"bottom_right_temp\": 70, \"mold_temp\": 75, \"vacuum\": 0.5 },\n  { \"id\": \"F2\", \"status\": \"IDLE\", \"processing_time\": 0, \"idle_time\": 150, \"pieces\": 0, \"top_left_temp\": 50, \"bottom_left_temp\": 45, \"top_right_temp\": 55, \"bottom_right_temp\": 60, \"mold_temp\": 65, \"vacuum\": 0.3 },\n  { \"id\": \"F3\", \"status\": \"OFF\", \"processing_time\": 0, \"idle_time\": 0, \"pieces\": 0, \"top_left_temp\": 0, \"bottom_left_temp\": 0, \"top_right_temp\": 0, \"bottom_right_temp\": 0, \"mold_temp\": 0, \"vacuum\": 0 },\n  { \"id\": \"F4\", \"status\": \"ALARM\", \"processing_time\": 50, \"idle_time\": 20, \"pieces\": 10, \"top_left_temp\": 70, \"bottom_left_temp\": 65, \"top_right_temp\": 75, \"bottom_right_temp\": 80, \"mold_temp\": 85, \"vacuum\": 0.6 },\n  { \"id\": \"F5\", \"status\": \"RUN\", \"processing_time\": 200, \"idle_time\": 10, \"pieces\": 200, \"top_left_temp\": 65, \"bottom_left_temp\": 60, \"top_right_temp\": 70, \"bottom_right_temp\": 75, \"mold_temp\": 80, \"vacuum\": 0.7 },\n  { \"id\": \"F6\", \"status\": \"IDLE\", \"processing_time\": 0, \"idle_time\": 100, \"pieces\": 0, \"top_left_temp\": 55, \"bottom_left_temp\": 50, \"top_right_temp\": 60, \"bottom_right_temp\": 65, \"mold_temp\": 70, \"vacuum\": 0.4 },\n  { \"id\": \"F7\", \"status\": \"OFF\", \"processing_time\": 0, \"idle_time\": 0, \"pieces\": 0, \"top_left_temp\": 0, \"bottom_left_temp\": 0, \"top_right_temp\": 0, \"bottom_right_temp\": 0, \"mold_temp\": 0, \"vacuum\": 0 },\n  { \"id\": \"F8\", \"status\": \"ALARM\", \"processing_time\": 30, \"idle_time\": 5, \"pieces\": 5, \"top_left_temp\": 75, \"bottom_left_temp\": 70, \"top_right_temp\": 80, \"bottom_right_temp\": 85, \"mold_temp\": 90, \"vacuum\": 1.2 },\n  { \"id\": \"A1\", \"status\": \"RUN\", \"processing_time\": 120, \"idle_time\": 30, \"pieces\": 100, \"top_left_temp\": 60, \"bottom_left_temp\": 55, \"top_right_temp\": 65, \"bottom_right_temp\": 70, \"mold_temp\": 75, \"vacuum\": 0.5 },\n  { \"id\": \"A2\", \"status\": \"IDLE\", \"processing_time\": 0, \"idle_time\": 150, \"pieces\": 0, \"top_left_temp\": 50, \"bottom_left_temp\": 45, \"top_right_temp\": 55, \"bottom_right_temp\": 60, \"mold_temp\": 65, \"vacuum\": 0.3 },\n  { \"id\": \"A3\", \"status\": \"OFF\", \"processing_time\": 0, \"idle_time\": 0, \"pieces\": 0, \"top_left_temp\": 0, \"bottom_left_temp\": 0, \"top_right_temp\": 0, \"bottom_right_temp\": 0, \"mold_temp\": 0, \"vacuum\": 0 },\n  { \"id\": \"A4\", \"status\": \"ALARM\", \"processing_time\": 50, \"idle_time\": 20, \"pieces\": 10, \"top_left_temp\": 70, \"bottom_left_temp\": 65, \"top_right_temp\": 75, \"bottom_right_temp\": 80, \"mold_temp\": 85, \"vacuum\": 0.6 },\n  { \"id\": \"A5\", \"status\": \"RUN\", \"processing_time\": 200, \"idle_time\": 10, \"pieces\": 200, \"top_left_temp\": 65, \"bottom_left_temp\": 60, \"top_right_temp\": 70, \"bottom_right_temp\": 75, \"mold_temp\": 80, \"vacuum\": 0.7 },\n  { \"id\": \"A6\", \"status\": \"IDLE\", \"processing_time\": 0, \"idle_time\": 100, \"pieces\": 0, \"top_left_temp\": 55, \"bottom_left_temp\": 50, \"top_right_temp\": 60, \"bottom_right_temp\": 65, \"mold_temp\": 70, \"vacuum\": 0.4 },\n  { \"id\": \"A7\", \"status\": \"OFF\", \"processing_time\": 0, \"idle_time\": 0, \"pieces\": 0, \"top_left_temp\": 0, \"bottom_left_temp\": 0, \"top_right_temp\": 0, \"bottom_right_temp\": 0, \"mold_temp\": 0, \"vacuum\": 0 },\n  { \"id\": \"A8\", \"status\": \"ALARM\", \"processing_time\": 30, \"idle_time\": 5, \"pieces\": 5, \"top_left_temp\": 75, \"bottom_left_temp\": 70, \"top_right_temp\": 80, \"bottom_right_temp\": 85, \"mold_temp\": 90, \"vacuum\": 1.2 }\n]"
+    },
+    {
+      "uuid": "0c98e37a-7929-4dc9-aa58-8ea410021a90",
+      "id": "wd20",
+      "name": "MachineData (B)",
+      "documentation": "",
+      "value": "{ \n  \"status\": 0,\n  \"data\": [\n    { \"id\": \"C1\", \"status\": \"RUN\", \"processing_time\": 120, \"idle_time\": 30, \"pieces\": {{faker 'number.int' min=0 max=400}}, \"top_left_temp\": 60, \"bottom_left_temp\": 55, \"top_right_temp\": 65, \"bottom_right_temp\": 70, \"mold_temp\": 75, \"vacuum\": 0.5 },\n    { \"id\": \"C2\", \"status\": \"IDLE\", \"processing_time\": 0, \"idle_time\": 150, \"pieces\": 0, \"top_left_temp\": 50, \"bottom_left_temp\": 45, \"top_right_temp\": 55, \"bottom_right_temp\": 60, \"mold_temp\": 65, \"vacuum\": 0.3 },\n    { \"id\": \"C3\", \"status\": \"OFF\", \"processing_time\": 0, \"idle_time\": 0, \"pieces\": 0, \"top_left_temp\": 0, \"bottom_left_temp\": 0, \"top_right_temp\": 0, \"bottom_right_temp\": 0, \"mold_temp\": 0, \"vacuum\": 0 },\n    { \"id\": \"C4\", \"status\": \"ALARM\", \"processing_time\": 50, \"idle_time\": 20, \"pieces\": 10, \"top_left_temp\": 70, \"bottom_left_temp\": 65, \"top_right_temp\": 75, \"bottom_right_temp\": 80, \"mold_temp\": 85, \"vacuum\": 0.6 },\n    { \"id\": \"C5\", \"status\": \"RUN\", \"processing_time\": 200, \"idle_time\": 10, \"pieces\": 200, \"top_left_temp\": 65, \"bottom_left_temp\": 60, \"top_right_temp\": 70, \"bottom_right_temp\": 75, \"mold_temp\": 80, \"vacuum\": 0.7 },\n    { \"id\": \"C6\", \"status\": \"IDLE\", \"processing_time\": 0, \"idle_time\": 100, \"pieces\": 0, \"top_left_temp\": 55, \"bottom_left_temp\": 50, \"top_right_temp\": 60, \"bottom_right_temp\": 65, \"mold_temp\": 70, \"vacuum\": 0.4 },\n    { \"id\": \"C7\", \"status\": \"OFF\", \"processing_time\": 0, \"idle_time\": 0, \"pieces\": 0, \"top_left_temp\": 0, \"bottom_left_temp\": 0, \"top_right_temp\": 0, \"bottom_right_temp\": 0, \"mold_temp\": 0, \"vacuum\": 0 },\n    { \"id\": \"C8\", \"status\": \"ALARM\", \"processing_time\": 30, \"idle_time\": 5, \"pieces\": 5, \"top_left_temp\": 75, \"bottom_left_temp\": 70, \"top_right_temp\": 80, \"bottom_right_temp\": 85, \"mold_temp\": 90, \"vacuum\": 1.2 },\n    { \"id\": \"75\", \"status\": \"RUN\", \"processing_time\": 150, \"idle_time\": 20, \"pieces\": 150, \"top_left_temp\": 80, \"bottom_left_temp\": 75, \"top_right_temp\": 85, \"bottom_right_temp\": 90, \"mold_temp\": 95, \"vacuum\": 1.0 },\n    { \"id\": \"76\", \"status\": \"IDLE\", \"processing_time\": 0, \"idle_time\": 80, \"pieces\": 0, \"top_left_temp\": 45, \"bottom_left_temp\": 40, \"top_right_temp\": 50, \"bottom_right_temp\": 55, \"mold_temp\": 60, \"vacuum\": 0.2 },\n    { \"id\": \"77\", \"status\": \"OFF\", \"processing_time\": 0, \"idle_time\": 0, \"pieces\": 0, \"top_left_temp\": 0, \"bottom_left_temp\": 0, \"top_right_temp\": 0, \"bottom_right_temp\": 0, \"mold_temp\": 0, \"vacuum\": 0 },\n    { \"id\": \"78\", \"status\": \"ALARM\", \"processing_time\": 40, \"idle_time\": 15, \"pieces\": 8, \"top_left_temp\": 72, \"bottom_left_temp\": 67, \"top_right_temp\": 77, \"bottom_right_temp\": 82, \"mold_temp\": 87, \"vacuum\": 1.1 },\n    { \"id\": \"79\", \"status\": \"RUN\", \"processing_time\": 180, \"idle_time\": 25, \"pieces\": 180, \"top_left_temp\": 85, \"bottom_left_temp\": 80, \"top_right_temp\": 90, \"bottom_right_temp\": 95, \"mold_temp\": 100, \"vacuum\": 1.5 },\n    { \"id\": \"80\", \"status\": \"IDLE\", \"processing_time\": 0, \"idle_time\": 90, \"pieces\": 0, \"top_left_temp\": 50, \"bottom_left_temp\": 45, \"top_right_temp\": 55, \"bottom_right_temp\": 60, \"mold_temp\": 65, \"vacuum\": 0.3 },\n    { \"id\": \"81\", \"status\": \"OFF\", \"processing_time\": 0, \"idle_time\": 0, \"pieces\": 0, \"top_left_temp\": 0, \"bottom_left_temp\": 0, \"top_right_temp\": 0, \"bottom_right_temp\": 0, \"mold_temp\": 0, \"vacuum\": 0 },\n    { \"id\": \"82\", \"status\": \"ALARM\", \"processing_time\": 60, \"idle_time\": 10, \"pieces\": 12, \"top_left_temp\": 78 },\n    { \"id\": \"B1\", \"status\": \"RUN\", \"processing_time\": 160, \"idle_time\": 15, \"pieces\":160, \"top_left_temp\": 88 },\n    { \"id\": \"B2\", \"status\": \"IDLE\", \"processing_time\": 0, \"idle_time\": 70, \"pieces\": 0, \"top_left_temp\": 48 }\n  ]\n}"
+    },
+    {
+      "uuid": "079569ef-ffea-4f12-bb9b-e6a048a0418d",
+      "id": "vbio",
+      "name": "MachineData (C)",
+      "documentation": "",
+      "value": "{ \n  \"status\": 0,\n  \"data\": [\n    { \"id\": \"A1\", \"status\": \"RUN\", \"processing_time\": 120, \"idle_time\": 30, \"pieces\": 100, \"top_left_temp\": 60, \"bottom_left_temp\": 55, \"top_right_temp\": 65, \"bottom_right_temp\": 70, \"mold_temp\": 75, \"vacuum\": 0.5 },\n    { \"id\": \"A2\", \"status\": \"IDLE\", \"processing_time\": 0, \"idle_time\": 150, \"pieces\": 0, \"top_left_temp\": 50, \"bottom_left_temp\": 45, \"top_right_temp\": 55, \"bottom_right_temp\": 60, \"mold_temp\": 65, \"vacuum\": 0.3 },\n    { \"id\": \"A3\", \"status\": \"OFF\", \"processing_time\": 0, \"idle_time\": 0, \"pieces\": 0, \"top_left_temp\": 0, \"bottom_left_temp\": 0, \"top_right_temp\": 0, \"bottom_right_temp\": 0, \"mold_temp\": 0, \"vacuum\": 0 },\n    { \"id\": \"A4\", \"status\": \"ALARM\", \"processing_time\": 50, \"idle_time\": 20, \"pieces\": 10, \"top_left_temp\": 70, \"bottom_left_temp\": 65, \"top_right_temp\": 75, \"bottom_right_temp\": 80, \"mold_temp\": 85, \"vacuum\": 0.6 },\n    { \"id\": \"A5\", \"status\": \"RUN\", \"processing_time\": 200, \"idle_time\": 10, \"pieces\": 200, \"top_left_temp\": 65, \"bottom_left_temp\": 60, \"top_right_temp\": 70, \"bottom_right_temp\": 75, \"mold_temp\": 80, \"vacuum\": 0.7 },\n    { \"id\": \"A6\", \"status\": \"IDLE\", \"processing_time\": 0, \"idle_time\": 100, \"pieces\": 0, \"top_left_temp\": 55, \"bottom_left_temp\": 50, \"top_right_temp\": 60, \"bottom_right_temp\": 65, \"mold_temp\": 70, \"vacuum\": 0.4 },\n    { \"id\": \"A7\", \"status\": \"OFF\", \"processing_time\": 0, \"idle_time\": 0, \"pieces\": 0, \"top_left_temp\": 0, \"bottom_left_temp\": 0, \"top_right_temp\": 0, \"bottom_right_temp\": 0, \"mold_temp\": 0, \"vacuum\": 0 },\n    { \"id\": \"A8\", \"status\": \"ALARM\", \"processing_time\": 30, \"idle_time\": 5, \"pieces\": 5, \"top_left_temp\": 75, \"bottom_left_temp\": 70, \"top_right_temp\": 80, \"bottom_right_temp\": 85, \"mold_temp\": 90, \"vacuum\": 1.2 },\n    { \"id\": \"G1\", \"status\": \"RUN\", \"processing_time\": 120, \"idle_time\": 30, \"pieces\": 100, \"top_left_temp\": 60, \"bottom_left_temp\": 55, \"top_right_temp\": 65, \"bottom_right_temp\": 70, \"mold_temp\": 75, \"vacuum\": 0.5 },\n    { \"id\": \"G2\", \"status\": \"IDLE\", \"processing_time\": 0, \"idle_time\": 150, \"pieces\": 0, \"top_left_temp\": 50, \"bottom_left_temp\": 45, \"top_right_temp\": 55, \"bottom_right_temp\": 60, \"mold_temp\": 65, \"vacuum\": 0.3 },\n    { \"id\": \"G3\", \"status\": \"OFF\", \"processing_time\": 0, \"idle_time\": 0, \"pieces\": 0, \"top_left_temp\": 0, \"bottom_left_temp\": 0, \"top_right_temp\": 0, \"bottom_right_temp\": 0, \"mold_temp\": 0, \"vacuum\": 0 },\n    { \"id\": \"G4\", \"status\": \"ALARM\", \"processing_time\": 50, \"idle_time\": 20, \"pieces\": 10, \"top_left_temp\": 70, \"bottom_left_temp\": 65, \"top_right_temp\": 75, \"bottom_right_temp\": 80, \"mold_temp\": 85, \"vacuum\": 0.6 },\n    { \"id\": \"F1\", \"status\": \"RUN\", \"processing_time\": 120, \"idle_time\": 30, \"pieces\": 100, \"top_left_temp\": 60, \"bottom_left_temp\": 55, \"top_right_temp\": 65, \"bottom_right_temp\": 70, \"mold_temp\": 75, \"vacuum\": 0.5 },\n    { \"id\": \"F2\", \"status\": \"IDLE\", \"processing_time\": 0, \"idle_time\": 150, \"pieces\": 0, \"top_left_temp\": 50, \"bottom_left_temp\": 45, \"top_right_temp\": 55, \"bottom_right_temp\": 60, \"mold_temp\": 65, \"vacuum\": 0.3 },\n    { \"id\": \"F5\", \"status\": \"RUN\", \"processing_time\": 200, \"idle_time\": 10, \"pieces\": 200, \"top_left_temp\": 65, \"bottom_left_temp\": 60, \"top_right_temp\": 70, \"bottom_right_temp\": 75, \"mold_temp\": 80, \"vacuum\": 0.7 },\n    { \"id\": \"F6\", \"status\": \"IDLE\", \"processing_time\": 0, \"idle_time\": 100, \"pieces\": 0, \"top_left_temp\": 55, \"bottom_left_temp\": 50, \"top_right_temp\": 60, \"bottom_right_temp\": 65, \"mold_temp\": 70, \"vacuum\": 0.4 }\n  ]\n}"
+    },
+    {
+      "uuid": "e21d26e9-fa22-48d3-8537-1001eaa84d6e",
+      "id": "613e",
+      "name": "MachineData (C_ARM)",
+      "documentation": "",
+      "value": "{ \n  \"status\": 0,\n  \"data\": [\n    { \"id\": \"G5\", \"status\": \"RUN\", \"processing_time\": 200, \"idle_time\": 10, \"pieces\": 200, \"top_left_temp\": 65, \"bottom_left_temp\": 60, \"top_right_temp\": 70, \"bottom_right_temp\": 75, \"mold_temp\": 80, \"vacuum\": 0.7 },\n    { \"id\": \"G6\", \"status\": \"IDLE\", \"processing_time\": 0, \"idle_time\": 100, \"pieces\": 0, \"top_left_temp\": 55, \"bottom_left_temp\": 50, \"top_right_temp\": 60, \"bottom_right_temp\": 65, \"mold_temp\": 70, \"vacuum\": 0.4 },\n    { \"id\": \"F3\", \"status\": \"OFF\", \"processing_time\": 0, \"idle_time\": 0, \"pieces\": 0, \"top_left_temp\": 0, \"bottom_left_temp\": 0, \"top_right_temp\": 0, \"bottom_right_temp\": 0, \"mold_temp\": 0, \"vacuum\": 0 },\n    { \"id\": \"F4\", \"status\": \"ALARM\", \"processing_time\": 50, \"idle_time\": 20, \"pieces\": 10, \"top_left_temp\": 70, \"bottom_left_temp\": 65, \"top_right_temp\": 75, \"bottom_right_temp\": 80, \"mold_temp\": 85, \"vacuum\": 0.6 },\n    { \"id\": \"F7\", \"status\": \"OFF\", \"processing_time\": 0, \"idle_time\": 0, \"pieces\": 0, \"top_left_temp\": 0, \"bottom_left_temp\": 0, \"top_right_temp\": 0, \"bottom_right_temp\": 0, \"mold_temp\": 0, \"vacuum\": 0 },\n    { \"id\": \"F8\", \"status\": \"ALARM\", \"processing_time\": 30, \"idle_time\": 5, \"pieces\": 5, \"top_left_temp\": 75, \"bottom_left_temp\": 70, \"top_right_temp\": 80, \"bottom_right_temp\": 85, \"mold_temp\": 90, \"vacuum\": 1.2 }\n  ]\n}"
+    },
+    {
+      "uuid": "145a0b12-19da-4118-81c9-49439cc78539",
+      "id": "hox5",
+      "name": "EquipmentInfoList",
+      "documentation": "",
+      "value": "{ \n  \"status\": 0,\n  \"data\": [\n    { \"id\": \"C1\", \"name\": \"C1\", \"status\": \"RUN\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"C2\", \"name\": \"C2\", \"status\": \"IDLE\", \"supervisor\": \"李四\", \"lineId\": \"@example2\", \"phone\": \"0987654321\"},\n    { \"id\": \"C3\", \"name\": \"C3\", \"status\": \"OFF\", \"supervisor\": \"王五\", \"lineId\": \"@example3\", \"phone\": \"0922333444\"},\n    { \"id\": \"C4\", \"name\": \"C4\", \"status\": \"ALARM\", \"supervisor\": \"趙六\", \"lineId\": \"@example4\", \"phone\": \"0955667788\"},\n    { \"id\": \"C5\", \"name\": \"C5\", \"status\": \"RUN\", \"supervisor\": \"周七\", \"lineId\": \"@example5\", \"phone\": \"0933445566\"},\n    { \"id\": \"C6\", \"name\": \"C6\", \"status\": \"IDLE\", \"supervisor\": \"吳八\", \"lineId\": \"@example6\", \"phone\": \"0944556677\"},\n    { \"id\": \"C7\", \"name\": \"C7\", \"status\": \"OFF\", \"supervisor\": \"鄭九\", \"lineId\": \"@example7\", \"phone\": \"0966778899\"},\n    { \"id\": \"C8\", \"name\": \"C8\", \"status\": \"ALARM\", \"supervisor\": \"錢十\", \"lineId\": \"@example8\", \"phone\": \"0977889900\"},\n    { \"id\": \"75\", \"name\": \"75\", \"status\": \"IDLE\", \"supervisor\": \"孫十一\", \"lineId\": \"@example9\", \"phone\": \"0988776655\"},\n    { \"id\": \"76\", \"name\": \"76\", \"status\": \"OFF\", \"supervisor\": \"李十二\", \"lineId\": \"@example10\", \"phone\": \"0911223344\"},\n    { \"id\": \"77\", \"name\": \"77\", \"status\": \"ALARM\", \"supervisor\": \"張十三\", \"lineId\": \"@example11\", \"phone\": \"0922334455\"},\n    { \"id\": \"78\", \"name\": \"78\", \"status\": \"RUN\", \"supervisor\": \"王十四\", \"lineId\": \"@example12\", \"phone\": \"0933445566\"},\n    { \"id\": \"79\", \"name\": \"79\", \"status\": \"RUN\", \"supervisor\": \"趙十五\", \"lineId\": \"@example13\", \"phone\": \"0944556677\"},\n    { \"id\": \"80\", \"name\": \"80\", \"status\": \"IDLE\", \"supervisor\": \"周十六\", \"lineId\": \"@example14\", \"phone\": \"0955667788\"},\n    { \"id\": \"81\", \"name\": \"81\", \"status\": \"OFF\", \"supervisor\": \"吳十七\", \"lineId\": \"@example15\", \"phone\": \"0966778899\"},\n    { \"id\": \"82\", \"name\": \"82\", \"status\": \"ALARM\", \"supervisor\": \"鄭十八\", \"lineId\": \"@example16\", \"phone\": \"0977889900\"},\n    { \"id\": \"B1\", \"name\": \"B1\", \"status\": \"RUN\", \"supervisor\": \"錢十九\", \"lineId\": \"@example17\", \"phone\": \"0988776655\"},\n    { \"id\": \"B2\", \"name\": \"B2\", \"status\": \"IDLE\", \"supervisor\": \"孫二十\", \"lineId\": \"@example18\", \"phone\": \"0912345678\"},\n    { \"id\": \"G1\", \"name\": \"G1\", \"status\": \"RUN\", \"supervisor\": \"李二一\", \"lineId\": \"@example19\", \"phone\": \"0911223344\"},\n    { \"id\": \"G2\", \"name\": \"G2\", \"status\": \"IDLE\", \"supervisor\": \"張二二\", \"lineId\": \"@example20\", \"phone\": \"0922334455\"},\n    { \"id\": \"G3\", \"name\": \"G3\", \"status\": \"OFF\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"G4\", \"name\": \"G4\", \"status\": \"ALARM\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"G5\", \"name\": \"G5\", \"status\": \"RUN\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"G6\", \"name\": \"G6\", \"status\": \"IDLE\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"F1\", \"name\": \"F1\", \"status\": \"RUN\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"F2\", \"name\": \"F2\", \"status\": \"IDLE\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"F3\", \"name\": \"F3\", \"status\": \"OFF\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"F4\", \"name\": \"F4\", \"status\": \"ALARM\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"F5\", \"name\": \"F5\", \"status\": \"RUN\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"F6\", \"name\": \"F6\", \"status\": \"IDLE\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"F7\", \"name\": \"F7\", \"status\": \"OFF\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"F8\", \"name\": \"F8\", \"status\": \"ALARM\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"A1\", \"name\": \"A1\", \"status\": \"RUN\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"A2\", \"name\": \"A2\", \"status\": \"IDLE\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"A3\", \"name\": \"A3\", \"status\": \"OFF\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"A4\", \"name\": \"A4\", \"status\": \"ALARM\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"A5\", \"name\": \"A5\", \"status\": \"RUN\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"A6\", \"name\": \"A6\", \"status\": \"IDLE\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"A7\", \"name\": \"A7\", \"status\": \"OFF\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"A8\", \"name\": \"A8\", \"status\": \"ALARM\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"}\n  ]\n}"
+    },
+    {
+      "uuid": "a6018395-c9db-4ba8-9ab5-0f6c94a433cf",
+      "id": "ptfs",
+      "name": "Machines",
+      "documentation": "",
+      "value": "{ \n  \"status\": 0,\n  \"data\": [\n    { \"id\": \"C1\", \"name\": \"C1\", \"status\": \"RUN\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"C2\", \"name\": \"C2\", \"status\": \"IDLE\", \"supervisor\": \"李四\", \"lineId\": \"@example2\", \"phone\": \"0987654321\"},\n    { \"id\": \"C3\", \"name\": \"C3\", \"status\": \"OFF\", \"supervisor\": \"王五\", \"lineId\": \"@example3\", \"phone\": \"0922333444\"},\n    { \"id\": \"C4\", \"name\": \"C4\", \"status\": \"ALARM\", \"supervisor\": \"趙六\", \"lineId\": \"@example4\", \"phone\": \"0955667788\"},\n    { \"id\": \"C5\", \"name\": \"C5\", \"status\": \"RUN\", \"supervisor\": \"周七\", \"lineId\": \"@example5\", \"phone\": \"0933445566\"},\n    { \"id\": \"C6\", \"name\": \"C6\", \"status\": \"IDLE\", \"supervisor\": \"吳八\", \"lineId\": \"@example6\", \"phone\": \"0944556677\"},\n    { \"id\": \"C7\", \"name\": \"C7\", \"status\": \"OFF\", \"supervisor\": \"鄭九\", \"lineId\": \"@example7\", \"phone\": \"0966778899\"},\n    { \"id\": \"C8\", \"name\": \"C8\", \"status\": \"ALARM\", \"supervisor\": \"錢十\", \"lineId\": \"@example8\", \"phone\": \"0977889900\"},\n    { \"id\": \"75\", \"name\": \"75\", \"status\": \"IDLE\", \"supervisor\": \"孫十一\", \"lineId\": \"@example9\", \"phone\": \"0988776655\"},\n    { \"id\": \"76\", \"name\": \"76\", \"status\": \"OFF\", \"supervisor\": \"李十二\", \"lineId\": \"@example10\", \"phone\": \"0911223344\"},\n    { \"id\": \"77\", \"name\": \"77\", \"status\": \"ALARM\", \"supervisor\": \"張十三\", \"lineId\": \"@example11\", \"phone\": \"0922334455\"},\n    { \"id\": \"78\", \"name\": \"78\", \"status\": \"RUN\", \"supervisor\": \"王十四\", \"lineId\": \"@example12\", \"phone\": \"0933445566\"},\n    { \"id\": \"79\", \"name\": \"79\", \"status\": \"RUN\", \"supervisor\": \"趙十五\", \"lineId\": \"@example13\", \"phone\": \"0944556677\"},\n    { \"id\": \"80\", \"name\": \"80\", \"status\": \"IDLE\", \"supervisor\": \"周十六\", \"lineId\": \"@example14\", \"phone\": \"0955667788\"},\n    { \"id\": \"81\", \"name\": \"81\", \"status\": \"OFF\", \"supervisor\": \"吳十七\", \"lineId\": \"@example15\", \"phone\": \"0966778899\"},\n    { \"id\": \"82\", \"name\": \"82\", \"status\": \"ALARM\", \"supervisor\": \"鄭十八\", \"lineId\": \"@example16\", \"phone\": \"0977889900\"},\n    { \"id\": \"B1\", \"name\": \"B1\", \"status\": \"RUN\", \"supervisor\": \"錢十九\", \"lineId\": \"@example17\", \"phone\": \"0988776655\"},\n    { \"id\": \"B2\", \"name\": \"B2\", \"status\": \"IDLE\", \"supervisor\": \"孫二十\", \"lineId\": \"@example18\", \"phone\": \"0912345678\"},\n    { \"id\": \"G1\", \"name\": \"G1\", \"status\": \"RUN\", \"supervisor\": \"李二一\", \"lineId\": \"@example19\", \"phone\": \"0911223344\"},\n    { \"id\": \"G2\", \"name\": \"G2\", \"status\": \"IDLE\", \"supervisor\": \"張二二\", \"lineId\": \"@example20\", \"phone\": \"0922334455\"},\n    { \"id\": \"G3\", \"name\": \"G3\", \"status\": \"OFF\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"G4\", \"name\": \"G4\", \"status\": \"ALARM\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"G5\", \"name\": \"G5\", \"status\": \"RUN\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"G6\", \"name\": \"G6\", \"status\": \"IDLE\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"F1\", \"name\": \"F1\", \"status\": \"RUN\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"F2\", \"name\": \"F2\", \"status\": \"IDLE\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"F3\", \"name\": \"F3\", \"status\": \"OFF\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"F4\", \"name\": \"F4\", \"status\": \"ALARM\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"F5\", \"name\": \"F5\", \"status\": \"RUN\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"F6\", \"name\": \"F6\", \"status\": \"IDLE\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"F7\", \"name\": \"F7\", \"status\": \"OFF\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"F8\", \"name\": \"F8\", \"status\": \"ALARM\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"A1\", \"name\": \"A1\", \"status\": \"RUN\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"A2\", \"name\": \"A2\", \"status\": \"IDLE\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"A3\", \"name\": \"A3\", \"status\": \"OFF\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"A4\", \"name\": \"A4\", \"status\": \"ALARM\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"A5\", \"name\": \"A5\", \"status\": \"RUN\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"A6\", \"name\": \"A6\", \"status\": \"IDLE\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"A7\", \"name\": \"A7\", \"status\": \"OFF\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"},\n    { \"id\": \"A8\", \"name\": \"A8\", \"status\": \"ALARM\", \"supervisor\": \"張三\", \"lineId\": \"@example1\", \"phone\": \"0912345678\"}\n  ]\n}"
+    }
+  ],
+  "callbacks": []
+}
