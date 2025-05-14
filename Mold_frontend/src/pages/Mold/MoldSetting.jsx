@@ -8,9 +8,9 @@ import "../../assets/styles/mold.css";
 import { clearToken, isAuthenticated } from "../../utils/auth";
 
 export default function MoldSetting() {
-    const [selectedIndex, setSelectedIndex] = useState(1); 
+    const [selectedIndex, setSelectedIndex] = useState(1);
     const [searchKeyword, setSearchKeyword] = useState("");
-    const [modalVisible, setModalVisible] = useState(false); 
+    const [modalVisible, setModalVisible] = useState(false);
     const [selectedPart, setSelectedPart] = useState(null);
     const navigate = useNavigate();
     const [modalSelectedIndex, setModalSelectedIndex] = useState(null);
@@ -38,7 +38,7 @@ export default function MoldSetting() {
         const saved = localStorage.getItem("moldRows");
         return saved ? JSON.parse(saved) : defaultRows;
     });
-    
+
     // 檢查預設資料變化，如果有變化存到 localStorage
     useEffect(() => {
         localStorage.setItem("moldRows", JSON.stringify(rows));
@@ -47,9 +47,9 @@ export default function MoldSetting() {
     // 檢查登入狀態
     useEffect(() => {
         if (!isAuthenticated()) {
-          navigate("/login");
+            navigate("/login");
         }
-      }, []);    
+    }, []);
 
     const handleSelect = (index) => {
         setSelectedIndex(index);
@@ -68,7 +68,7 @@ export default function MoldSetting() {
         setRows(newRows);
     };
 
-    // 根據搜尋關鍵字過濾模具資料
+    // 關鍵字過濾模具資料
     const filteredRows = rows.filter((row) => {
         const keyword = searchKeyword.trim().toLowerCase();
         if (!keyword) return true;
@@ -122,34 +122,34 @@ export default function MoldSetting() {
         setPreviewImageSrc(src); // 設定預覽圖片的 URL
         setShowPreviewModal(true);
     };
-      
+
     return (
         <div className="vh-100 vw-100 user-select-none">
             <div style={{ position: 'fixed', top: '20px', right: '20px', zIndex: 999 }}>
-                    <button
-                      className=""
-                      style={{ backgroundColor: "transparent", color: "red", fontSize: "22px", border: "none" }}
-                      onClick={() => {
+                <button
+                    className=""
+                    style={{ backgroundColor: "transparent", color: "red", fontSize: "22px", border: "none" }}
+                    onClick={() => {
                         localStorage.removeItem("moldRows");
                         clearToken();
                         navigate("/login");
-                      }}
-                    >
-                      登出
-                    </button>
-                  </div>
+                    }}
+                >
+                    登出
+                </button>
+            </div>
             <div className="header">
                 <div className="logo-container">
-                    <img src={logo} alt="Logo" className="logo"/>
+                    <img src={logo} alt="Logo" className="logo" />
                 </div>
                 <div className="text-container">
                     <h1 className="title">模具管理系統</h1>
                     <div className="subtitle">
                         {["模具管理", "模具基本資料設定"].map((text, index) => (
                             <span
-                            key={index}
-                            className={`model ${selectedIndex === index ? 'selected' : ''}`}
-                            onClick={() => handleSelect(index)}
+                                key={index}
+                                className={`model ${selectedIndex === index ? 'selected' : ''}`}
+                                onClick={() => handleSelect(index)}
                             >
                                 {text}
                             </span>
@@ -158,19 +158,19 @@ export default function MoldSetting() {
                 </div>
             </div>
             <div className="d-flex justify-content-end">
-                <div style={{ width: "250px", marginTop: "-65px", paddingRight: "60px" }}>
+                <div style={{ width: "250px", marginTop: "-65px", paddingRight: "50px" }}>
                     <div className="search-box input-group bg-light rounded">
-                    <input
-                        type="text"
-                        className="form-control border-0 bg-light"
-                        placeholder="搜尋"
-                        value={searchKeyword}
-                        onChange={(e) => setSearchKeyword(e.target.value)}
-                        style={{ fontSize: "1rem"}}
-                    />
-                    <span className="input-group-text bg-light border-0">
-                        <Search size={18} />
-                    </span>
+                        <input
+                            type="text"
+                            className="form-control border-0 bg-light"
+                            placeholder="搜尋"
+                            value={searchKeyword}
+                            onChange={(e) => setSearchKeyword(e.target.value)}
+                            style={{ fontSize: "1rem" }}
+                        />
+                        <span className="input-group-text bg-light border-0">
+                            <Search size={18} />
+                        </span>
                     </div>
                 </div>
             </div>
@@ -178,7 +178,7 @@ export default function MoldSetting() {
                 <table className="table table-bordered text-center align-middle">
                     <thead className="sticky-top">
                         <tr className="table-secondary text-center align-middle">
-                        <th style={{ width: "30px" }}>序號</th>
+                            <th style={{ width: "30px" }}>序號</th>
                             <th style={{ width: "100px" }}>產品編號</th>
                             <th style={{ width: "120px" }}>鍛品名稱</th>
                             <th style={{ width: "70px" }}>模數</th>
@@ -195,80 +195,80 @@ export default function MoldSetting() {
                     </thead>
                     <tbody>
                         {filteredRows.map((row, index) => (
-                        <tr key={index} style={{ height: "55px" }}>
-                            <td>{index + 1}</td>
-                            <td>{row.productId}</td>
-                            <td>{row.name}</td>
-                            <td>{row.module}</td>
-                            <td>
-                                <select
-                                    className="form-select form-select-sm text-center"
-                                    value={row.line}
-                                    style={{width: "60px", textAlignLast: "center", margin: "0 auto"}}
-                                    onChange={(e) => handleChange(index, "line", e.target.value)}
-                                >
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                </select>
-                            </td>
-                            <td>{row.customer}</td>
-                            <td>{row.count}</td>
-                            <td className="text-center">
-                                <input
-                                    type="number"
-                                    className="custom-number"
-                                    value={row.limit}
-                                    onChange={(e) => handleChange(index, "limit", Math.max(0, Number(e.target.value)))}
-                                />
-                            </td>
-                            <td>
-                            {row.preview ? (
-                                <span
-                                    onClick={() => handlePreview(row.preview)}
-                                    style={{
-                                    color: "#0d6efd",
-                                    textDecoration: "underline",
-                                    cursor: "pointer",
-                                    display: "inline-flex",
-                                    alignItems: "center",
-                                    }}
-                                >
-                                    點我預覽照片
-                                    <Upload size={16} className="ms-2" />
-                                </span>
-                                ) : (
-                                <label
-                                    className="d-inline-flex align-items-center mb-2"
-                                    style={{ color: "#6c757d", textDecoration: "underline", cursor: "pointer" }}
-                                >
-                                    點選以上傳照片
-                                    <Upload size={16} className="ms-2" />
+                            <tr key={index} style={{ height: "55px" }}>
+                                <td>{index + 1}</td>
+                                <td>{row.productId}</td>
+                                <td>{row.name}</td>
+                                <td>{row.module}</td>
+                                <td>
+                                    <select
+                                        className="form-select form-select-sm text-center"
+                                        value={row.line}
+                                        style={{ width: "60px", textAlignLast: "center", margin: "0 auto" }}
+                                        onChange={(e) => handleChange(index, "line", e.target.value)}
+                                    >
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                    </select>
+                                </td>
+                                <td>{row.customer}</td>
+                                <td>{row.count}</td>
+                                <td className="text-center">
                                     <input
-                                    type="file"
-                                    accept="image/*"
-                                    onChange={(e) => handleChange(index, "image", e.target.files[0])}
-                                    hidden
+                                        type="number"
+                                        className="custom-number"
+                                        value={row.limit}
+                                        onChange={(e) => handleChange(index, "limit", Math.max(0, Number(e.target.value)))}
                                     />
-                                </label>
-                                )}
-                                <span
-                                    className="text-primary ms-5"
-                                    role="button"
-                                    onClick={() => handleEdit(index)}
-                                >
-                                    編輯
-                                </span>
-                                <span
-                                    className="text-danger ms-3"
-                                    role="button"
-                                    onClick={() => handleDeleteRow(index)}
-                                >
-                                    刪除
-                                </span>
-                            </td>
-                        </tr>
+                                </td>
+                                <td>
+                                    {row.preview ? (
+                                        <span
+                                            onClick={() => handlePreview(row.preview)}
+                                            style={{
+                                                color: "#0d6efd",
+                                                textDecoration: "underline",
+                                                cursor: "pointer",
+                                                display: "inline-flex",
+                                                alignItems: "center",
+                                            }}
+                                        >
+                                            點我預覽照片
+                                            <Upload size={16} className="ms-2" />
+                                        </span>
+                                    ) : (
+                                        <label
+                                            className="d-inline-flex align-items-center mb-2"
+                                            style={{ color: "#6c757d", textDecoration: "underline", cursor: "pointer" }}
+                                        >
+                                            點選以上傳照片
+                                            <Upload size={16} className="ms-2" />
+                                            <input
+                                                type="file"
+                                                accept="image/*"
+                                                onChange={(e) => handleChange(index, "image", e.target.files[0])}
+                                                hidden
+                                            />
+                                        </label>
+                                    )}
+                                    <span
+                                        className="text-primary ms-5"
+                                        role="button"
+                                        onClick={() => handleEdit(index)}
+                                    >
+                                        編輯
+                                    </span>
+                                    <span
+                                        className="text-danger ms-3"
+                                        role="button"
+                                        onClick={() => handleDeleteRow(index)}
+                                    >
+                                        刪除
+                                    </span>
+                                </td>
+                            </tr>
                         ))}
                     </tbody>
                 </table>
@@ -337,42 +337,42 @@ export default function MoldSetting() {
                                                         style={{ width: '150px', height: '150px', objectFit: 'contain', border: 'none' }}
                                                     />
                                                 )}
-                                            {rows[modalSelectedIndex]?.preview ? (
-                                                <span
-                                                onClick={() => handlePreview(rows[modalSelectedIndex].preview)}
-                                                style={{
-                                                    color: "#0d6efd",
-                                                    textDecoration: "underline",
-                                                    cursor: "pointer",
-                                                    display: "inline-flex",
-                                                    alignItems: "center",
-                                                    marginTop: "10px"
-                                                }}
-                                                >
-                                                點我預覽照片
-                                                <Upload size={16} className="ms-2" />
-                                                </span>
-                                            ) : (
-                                                <label
-                                                className="d-inline-flex align-items-center mt-2"
-                                                style={{
-                                                    color: "#6c757d",
-                                                    textDecoration: "underline",
-                                                    cursor: "pointer"
-                                                }}
-                                                >
-                                                點選以上傳照片
-                                                <Upload size={16} className="ms-2" />
-                                                <input
-                                                    type="file"
-                                                    accept="image/*"
-                                                    onChange={(e) =>
-                                                    handleChange(modalSelectedIndex, "image", e.target.files[0])
-                                                    }
-                                                    hidden
-                                                />
-                                                </label>
-                                            )}
+                                                {rows[modalSelectedIndex]?.preview ? (
+                                                    <span
+                                                        onClick={() => handlePreview(rows[modalSelectedIndex].preview)}
+                                                        style={{
+                                                            color: "#0d6efd",
+                                                            textDecoration: "underline",
+                                                            cursor: "pointer",
+                                                            display: "inline-flex",
+                                                            alignItems: "center",
+                                                            marginTop: "10px"
+                                                        }}
+                                                    >
+                                                        點我預覽照片
+                                                        <Upload size={16} className="ms-2" />
+                                                    </span>
+                                                ) : (
+                                                    <label
+                                                        className="d-inline-flex align-items-center mt-2"
+                                                        style={{
+                                                            color: "#6c757d",
+                                                            textDecoration: "underline",
+                                                            cursor: "pointer"
+                                                        }}
+                                                    >
+                                                        點選以上傳照片
+                                                        <Upload size={16} className="ms-2" />
+                                                        <input
+                                                            type="file"
+                                                            accept="image/*"
+                                                            onChange={(e) =>
+                                                                handleChange(modalSelectedIndex, "image", e.target.files[0])
+                                                            }
+                                                            hidden
+                                                        />
+                                                    </label>
+                                                )}
                                             </div>
                                         ) : (
                                             <span>{item.value}</span>
@@ -389,42 +389,42 @@ export default function MoldSetting() {
                     className="modal show fade d-block"
                     tabIndex="-1"
                     style={{
-                    backdropFilter: 'blur(3px)',
-                    backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                    position: 'fixed',
-                    top: 0,
-                    left: 0,
-                    width: '100vw',
-                    height: '100vh',
-                    zIndex: 1050,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
+                        backdropFilter: 'blur(3px)',
+                        backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        width: '100vw',
+                        height: '100vh',
+                        zIndex: 1050,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
                     }}
                     onClick={() => setShowPreviewModal(false)} // 點空白區關閉
                 >
                     <div
-                    className="modal-dialog modal-dialog-centered"
-                    style={{ maxWidth: '600px' }}
-                    onClick={(e) => e.stopPropagation()} // 阻止圖片點擊關閉
+                        className="modal-dialog modal-dialog-centered"
+                        style={{ maxWidth: '600px' }}
+                        onClick={(e) => e.stopPropagation()} // 阻止圖片點擊關閉
                     >
-                    <div className="modal-content">
-                        <div className="modal-body text-center">
-                        <img
-                            src={previewImageSrc}
-                            alt="預覽圖片"
-                            style={{ maxWidth: "100%", maxHeight: "80vh" }}
-                        />
+                        <div className="modal-content">
+                            <div className="modal-body text-center">
+                                <img
+                                    src={previewImageSrc}
+                                    alt="預覽圖片"
+                                    style={{ maxWidth: "100%", maxHeight: "80vh" }}
+                                />
+                            </div>
+                            <div className="modal-footer justify-content-center">
+                                <button className="btn btn-secondary" onClick={() => setShowPreviewModal(false)}>
+                                    關閉
+                                </button>
+                            </div>
                         </div>
-                        <div className="modal-footer justify-content-center">
-                        <button className="btn btn-secondary" onClick={() => setShowPreviewModal(false)}>
-                            關閉
-                        </button>
-                        </div>
-                    </div>
                     </div>
                 </div>
-                )}
-            </div>
-        );
-    }
+            )}
+        </div>
+    );
+}

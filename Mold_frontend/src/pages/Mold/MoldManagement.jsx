@@ -13,7 +13,7 @@ export default function MoldMangement() {
 
 	useEffect(() => {
 		if (!isAuthenticated()) {
-		navigate("/login");
+			navigate("/login");
 		}
 	}, []);
 
@@ -25,25 +25,25 @@ export default function MoldMangement() {
 		setSelectedIndex(index);
 
 		setTimeout(() => {
-		if (index === 0) {
-			navigate("/");
-		} else if (index === 1) {
-			navigate("/settings");
-		}
+			if (index === 0) {
+				navigate("/");
+			} else if (index === 1) {
+				navigate("/settings");
+			}
 		}, 100);
 	};
 
-  	return (
+	return (
 		<div style={{ minHeight: "100dvh", backgroundColor: "#f8f8f8", position: 'relative' }} className="vw-100 user-select-none py-1">
 			<div style={{ position: 'fixed', top: '20px', right: '20px', zIndex: 999 }}>
 				<button
-				className=""
-				style={{ backgroundColor: "transparent", color: "red", fontSize: "22px", border: "none" }}
-				onClick={() => {
-					localStorage.removeItem('gridParts')
-					clearToken();
-					navigate("/login");
-				}}
+					className=""
+					style={{ backgroundColor: "transparent", color: "red", fontSize: "22px", border: "none" }}
+					onClick={() => {
+						localStorage.removeItem('gridParts')
+						clearToken();
+						navigate("/login");
+					}}
 				>
 					登出
 				</button>
@@ -58,13 +58,13 @@ export default function MoldMangement() {
 					<h1 className="title">模具管理系統</h1>
 					<div className="subtitle">
 						{["模具管理", "模具基本資料設定"].map((text, index) => (
-						<span
-							key={index}
-							className={`model ${selectedIndex === index ? 'selected' : ''}`}
-							onClick={() => handleSelect(index)}
-						>
-						{text}
-						</span>
+							<span
+								key={index}
+								className={`model ${selectedIndex === index ? 'selected' : ''}`}
+								onClick={() => handleSelect(index)}
+							>
+								{text}
+							</span>
 						))}
 					</div>
 				</div>
@@ -90,6 +90,6 @@ export default function MoldMangement() {
 					<span>異常狀態（包含維修、保養）</span>
 				</div>
 			</div>
-	</div>
-  );
+		</div>
+	);
 }

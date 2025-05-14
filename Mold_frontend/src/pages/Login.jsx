@@ -17,7 +17,7 @@ export default function LoginPage() {
 
     useEffect(() => {
         if (getToken()) {
-        navigate("/");
+            navigate("/");
         }
     }, []);
 
@@ -66,12 +66,12 @@ export default function LoginPage() {
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="formUsername">
                         <Form.Label>帳號</Form.Label>
-                        <Form.Control type="text" placeholder="請輸入帳號" value={username} onChange={(e) => setUsername(e.target.value)}/>
+                        <Form.Control type="text" placeholder="請輸入帳號" value={username} onChange={(e) => setUsername(e.target.value)} />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formPassword">
                         <Form.Label>密碼</Form.Label>
-                        <Form.Control type="password" placeholder="請輸入密碼" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                        <Form.Control type="password" placeholder="請輸入密碼" value={password} onChange={(e) => setPassword(e.target.value)} />
                     </Form.Group>
 
                     <div className="d-flex justify-content-between align-items-center mb-3">
@@ -86,7 +86,6 @@ export default function LoginPage() {
 
                     <div className="d-grid">
                         <Button variant="primary" type="submit" disabled={loading}>
-                            {/* 登入 */}
                             {loading ? (
                                 <>
                                     <Spinner animation="border" size="sm" className="me-2" />
